@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!--[if lt IE 8]>      <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Octobox</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700,900" type="text/css">
+  <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+  <div class="site-wrapper">
+    <div class="site-wrapper-inner">
+      <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+      </svg>
+    </div>
+  </div>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.4/handlebars.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+  <script id="template" type="text/x-handlebars-template">
+    <div class="cover-container">
+      <div class="masthead clearfix">
+        <div class="inner">
+          <h1 class="masthead-brand"><a href="https://assembly.com/{{slug}}">{{name}}</a></h1>
+        </div>
+      </div>
+
+      <div class="inner cover">
+        {{#if poster_image_url}}
+          <a href="https://assembly.com/{{slug}}">
+            <img src={{poster_image_url}} width="300px">
+          </a>
+        {{/if}}
+
+        <h2 class="cover-heading">{{pitch}}</h2>
+
+        {{#if description}}
+          <p class="lead">{{description}}</p>
+        {{/if}}
+
+        <style>
+          .alert {
+             z-index: 9000; position: absolute; width: 300px; margin-left: -180px; left: 50%;
+          }
+        </style>
+
+        <div class="alert alert-success alert-dismissible" role="alert" style="display: none;">
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+          <h3>Successfully subscribed to {{name}} updates</h3>
+        </div>
+
+        <div class="alert alert-danger alert-dismissible" role="alert" style="display: none;">
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+          <h3>There was a problem adding you to the mailing list. Please try again later.</h3>
+        </div>
+
+        <form id="email-signup" class="form-inline" role="form" data-url="https://assembly.com/api/products/{{slug}}/potential_users">
+          <div class="form-group form-group-lg">
+            <label class="sr-only" for="email">Email address</label>
+            <input class="email form-control input-lg" type="email" name="email" placeholder="Email me when it's ready" style="min-width: 300px; text-align: center;" autofocus="true">
+          </div>
+          <button type="submit" class="btn btn-default btn-lg">&gt;</button>
+        </form>
+
+        <h2 class="cover-heading">Core Team</h2>
+        <ul class="list-inline">
+          {{#each core_team}}
+            <li>
+              <a href="https://assembly.com/users/{{username}}">
+                <img src={{avatar_url}} class="img-circle">
+                <h5>{{username}}</h5>
+              </a>
+            </li>
+          {{/each}}
+        </ul>
+
+      </div>
+      <div class="mastfoot">
+        <div class="inner">
+          <p>Made with ♥ on <a href="//assembly.com">Assembly</a></p>
+          <p>Layout based on the Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      $.get('https://assembly.com/api/products/octobox/info')
+        .done(function(data) {
+          var name = data.name;
+          var slug = data.slug;
+          var pitch = data.pitch;
+          var description = data.description;
+          var poster_image_url = data.poster_image_url;
+          var core_team = data.core_team;
+
+          if (poster_image_url.indexOf('default_poster.jpg') > -1) {
+            poster_image_url = 'https://assembly.com' + poster_image_url;
+          }
+
+          document.title = name;
+
+          var source = $('#template').html();
+          var template = Handlebars.compile(source);
+          var html = template({
+            name: name,
+            slug: slug,
+            pitch: pitch,
+            description: description,
+            poster_image_url: poster_image_url,
+            core_team: core_team || []
+          });
+
+          $('.site-wrapper-inner').html(html);
+
+          // attach submit listener
+          $('#email-signup').submit(function(e) {
+            e.preventDefault();
+
+            subscribe($(this));
+          });
+        }).fail(function(err) {
+          console.error(err);
+        });
+    });
+
+    function subscribe($form) {
+      var path = $form.data('url');
+      var data = {
+        email: $form.find('input[name="email"]').val()
+      };
+
+      $form.find('input[name="email"]').val('');
+
+      $.post(path, data)
+        .done(function(data) {
+          $form.find('input[name="email"]').val('');
+          $('.alert-success').fadeTo(100, 1);
+          $('.alert-success').fadeTo(10*1000, 0);
+        })
+        .fail(function(err) {
+          $('.alert-danger').fadeTo(100, 1);
+          $('.alert-danger').fadeTo(10*1000, 0);
+        });
+    }
+
+  </script>
+</body>
+</html>
