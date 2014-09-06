@@ -12,6 +12,7 @@ pids
 logs
 results
 build
+log
 .grunt
 
 .DS_Store
