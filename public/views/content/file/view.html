@@ -1,0 +1,26 @@
+<section ng-controller="FileController" ng-init="findOne()">
+		<span ng-if="file.type === 'note'">Modified {{file.modified}}</span>
+		<h2>{{file.name}}</h2>
+		<div>
+				<a class="btn" href="#/file{{file.path}}/edit">
+					edit
+				</a>
+				<a class="btn" ng-click="remove();">
+					remove
+				</a>
+				<button ng-show="!file.isFavourite" ng-click='addFavourite(file)'>Add Fav</button>
+				<button ng-show="file.isFavourite" ng-click='removeFavourite(file)'>Remove Fav</button>
+		</div>
+		<div>
+			<!-- Thumbnail -->
+			<div ng-if="file.hasThumbnail" class="file-full">
+				<img ng-init="getImage(file)" ng-src="{{ file.src }}" />
+				<!-- <img ng-init="makeUrl()" ng-src="{{ file.fileUrl }}" /> -->
+			</div>
+			<!-- Note Excerpt -->
+			<div ng-if="file.type === 'note'" class="list-excerpt">
+				<p ng-init="getContent(file)" class="note-full">{{file.content}}</p>
+			</div>
+			<!-- TODO: Other Files - download -->
+		</div>
+</section>

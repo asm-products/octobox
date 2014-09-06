@@ -1,0 +1,270 @@
+// icon background selectors
+.add-note,
+.add-files,
+.add-stack,
+.add-link,
+.more-delete,
+.icon-more span,
+.icon-dropbox span,
+.icon-fav div,
+.icon-share div,
+.item-bottom-overlay .icon-more div,
+.bug-icon span,
+.interface-icon span,
+.extension-icon span,
+.tag-icon div,
+.link-icon div,
+.stack-icon div,
+.image-icon div,
+.gif-icon div,
+.note-icon div,
+.inbox-icon div,
+.recent-icon div,
+.file-size div,
+.collection-icon div,
+.upload-button .abort div,
+.upload-button .done div,
+#sidebar-sync span,
+#sidebar-menu .dropdown-trigger > span,
+.alert-icon{
+  background-image: url('../img/interface/icons/icons.png');
+  background-repeat: no-repeat;
+}
+
+// Header
+
+  // Alerts - Success
+  .alert .alert-icon{
+    margin-right: em(10);
+    display: inline-block;
+    background-position: -450px 0;
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+  }
+
+  // Alerts - Error
+  .alert.alert-error .alert-icon{
+    background-position: -450px -50px;
+  }
+
+  // Big tag icon - header only
+  .tag-icon.big div{
+    display: inline-block;
+    background-image: url('../img/interface/icons/icons@2x.png');
+    background-repeat: no-repeat;
+    width: 27px;
+    height: 27px;
+    vertical-align: middle;
+    margin-right:em(5);
+    background-position: -150px -2px;
+  }
+
+  // Add Dropdown
+  .add-note{
+    background-position: 260px -187px;
+  }
+  .add-link{
+    background-position: 260px -337px;
+  }
+  .add-stack{
+    background-position: 260px -287px;
+  }
+  .add-files{
+    background-position: 260px -237px;
+  }
+
+  // More Dropdown
+  .more-delete{
+    background-position: -300px -393px;
+  }
+// Sidebar
+
+  // Tag icon
+  .tag-icon div{
+    background-position: -150px 0;
+    width: 15px;
+    height: 15px;
+    margin-left: em(2);
+    display: block;
+  }
+  // type icons - favourites and add files
+  .link-icon div,
+  .stack-icon div,
+  .image-icon div,
+  .note-icon div,
+  .inbox-icon div,
+  .gif-icon div,
+  .file-size div,
+  .bug-icon span,
+  .interface-icon span,
+  .extension-icon span,
+  .recent-icon div{
+    width: 15px;
+    height: 15px;
+  }
+  .recent-icon div{
+    background-position: -50px 0;
+    width: 16px;
+  }
+  .inbox-icon div{
+    background-position: -100px 0;
+    width: 16px;
+  }
+  .link-icon div{
+    background-position: 0 -350px;
+  }
+  .stack-icon div{
+    background-position: 0 -300px;
+  }
+  .image-icon div, .gif-icon div{ // TODO: make gif icon
+    background-position: 2px -250px;
+  }
+  .note-icon div{
+    background-position: 2px -200px;
+    height: 16px;
+  }
+  .file-size div{
+    background-position: -200px -150px;
+  }
+  // Collection icon - for click-to-add
+  .collection-icon div{
+    background-position: -250px -100px;
+    width: 17px;
+    height: 15px;
+    margin-top: em(2);
+    display: block;
+  }
+
+  // Footer - sync
+  #sidebar-sync span{
+    background-position: 0 -150px;
+    width: 20px;
+    height: 17px;
+    margin: 0;
+    display: block;
+    cursor: pointer;
+  }
+  #sidebar-sync span.loading{
+    background-position: 0 -100px;
+  }
+
+  // Footer - more
+  #sidebar-menu .dropdown-trigger{
+    padding: em(10);
+    cursor: pointer;
+  }
+  #sidebar-menu .dropdown-trigger > span, .icon-more .dropdown-trigger > span{
+    background-position: -50px -150px;
+    width: 19px;
+    height: 5px;
+    display: block;
+  }
+  #sidebar-menu .dropdown-trigger.active > span, .icon-more .dropdown-trigger.active > span{
+    background-position: -50px -100px;
+  }
+
+
+// List view
+
+  // Favourite
+  .icon-fav div{
+    background-position: -350px 0;
+    width: 18px;
+    height: 18px;
+    margin: em(12) 0 0 em(17);
+    display: block;
+  }
+  .icon-fav.checked div{
+    background-position: -350px -50px;
+  }
+
+  // More
+  .item-bottom-overlay .icon-more {
+    &:hover div{
+      background-position: -350px -100px;
+    }
+    div{
+      background-position: -400px -100px;
+      width: 19px;
+      height: 5px;
+      margin: em(19) 0 0 em(14);
+      display: block;
+    }
+  }
+
+  // Share
+  .icon-share div{
+    background-position: -400px 0;
+    width: 15px;
+    height: 15px;
+    margin: em(14) 0 0 em(14);
+    display: block;
+  }
+
+  // Upload button
+  .upload-button .abort, .upload-button .done{
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+    div{
+      background-position: -450px -150px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translateY(-50%) translateX(-50%);
+      -ms-transform: translateY(-50%) translateX(-50%);
+      transform: translateY(-50%) translateX(-50%);
+      width: 10px;
+      height: 10px;
+      display: block;
+    }
+  }
+  .upload-button .done div{
+    width: 12px;
+    height: 12px;
+    background-position: -450px -200px;
+  }
+
+// File Modal
+
+  // Share & More
+  .file-nav .icon-share div, .icon-more span{
+    width: 19px;
+    height: 19px;
+  }
+  .file-nav .icon-share div{
+    background-position: -100px -50px;
+    margin: em(4) 0 0 0;
+  }
+  .icon-more span{
+    display: block;
+    background-position: -50px -150px;
+    margin-top: em(8);
+  }
+
+// Settings
+  .icon-dropbox span{
+    background-position: -300px -100px;
+    width: 32px;
+    height: 32px;
+    // margin: em(14) 0 0 em(14);
+    display: block;
+  }
+
+// Beta Status
+  .bug-icon span,
+  .interface-icon span,
+  .extension-icon span{
+    display: block;
+  }
+  .bug-icon span{
+    background-position: -400px -198px;
+  }
+  .interface-icon span{
+    background-position: -400px -147px;
+  }
+  .extension-icon span{
+    background-position: -400px -249px;
+  }

@@ -1,0 +1,195 @@
+<div class="toggle-custom filemodal-backdrop" ng-if="_filemodalShow()" ng-click="_filemodalClose()" w-mousetrap="{'escape': _filemodalClose}"></div>
+<div class="scale-fade-custom filemodal-container" ng-if="_filemodalShow()" >
+  <div class="filemodal-window" >
+    <div class="filemodal-dialog">
+      <a class="app-logo back" ng-click="_filemodalClose()"><span>Octobox</span></a>
+      <div class="filemodal-content">
+        <!-- File -->
+        <section ng-if="_filemodalItem().kind !== 'link'" ng-controller="FileController" ng-init="findOneModal(_filemodalItem())" >
+              <div class="file-top">
+                <h2>
+                  <div ng-show="file.isFavourite !== undefined">
+                      <span ng-click="toggleFavourite(file)" class="favourite" ng-class="{'checked': file.isFavourite, 'unchecked': !file.isFavourite}">
+                          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             width="19px" height="19px" viewBox="0 0 19 19" enable-background="new 0 0 19 19" xml:space="preserve">
+                          <g transform="translate(-339.000000, -208.000000)">
+                            <path class="favourite-svg"  fill="#1A1918" stroke="#7B859C" stroke-width="1.4" d="M356.395,214.332l-4.683-0.719l-2.036-4.363c-0.214-0.458-0.673-0.751-1.177-0.751
+                              c-0.504,0-0.962,0.293-1.177,0.751l-2.036,4.363l-4.684,0.719c-0.482,0.074-0.881,0.413-1.036,0.877
+                              c-0.155,0.465-0.038,0.977,0.302,1.327l3.432,3.538l-0.796,4.907c-0.081,0.494,0.127,0.99,0.533,1.279
+                              c0.223,0.158,0.486,0.239,0.749,0.239c0.216,0,0.432-0.055,0.629-0.163l4.083-2.269l4.084,2.269
+                              c0.196,0.108,0.413,0.163,0.628,0.163c0.263,0,0.525-0.081,0.749-0.239c0.406-0.289,0.614-0.786,0.533-1.279l-0.796-4.907
+                              l3.433-3.538c0.34-0.35,0.456-0.862,0.302-1.327C357.276,214.745,356.876,214.405,356.395,214.332z"/>
+                          </g>
+                          </svg>
+                      </span>
+                  </div>
+                  <span click-to-edit="file.name" callback="renameItem(newName, cb)" kind="'file'" ng-class="{'edit-title': file.name.length > 0}">{{file.name}}</span>
+                </h2>
+                <div class="file-meta">
+                  <span ng-if="file.type === 'note'">Last modified: <span am-time-ago="file.modified"></span></span>
+                  <span ng-if="file.type === 'image'">via <span click-to-edit="file.source" callback="editSource(newName, cb)" kind="'file'" empty-state="add source">{{file.source}}</span></span>
+                </div>
+                <section class="file-nav">
+                  <section class="icon-share" ng-click="modal.open('/views/directives/share.html', file, 'narrow')" >
+                    <div></div>
+                  </section>
+                  <section class="icon-more">
+                    <div class="dropdown-trigger"
+                         dropdown-menu="fileMoreMenu"
+                         dropdown-model="fileMoreMenuSelected"
+                         dropdown-item-label="text"
+                         dropdown-onchange="editContent(selected)">
+                        <span></span>
+                    </div>
+                  </section>
+
+                </section>
+              </div>
+            <div class="file-details">
+              <div id="current-tags-container">
+                <span class="tag-icon" ng-click="editingTags = !editingTags; focusInput = !focusInput;"><img src="img/interface/icons/tag.svg" /></span>
+                <!-- Tags assigned to the item -->
+                <ul id="current-tags" ng-click="editingTags = !editingTags; focusInput = !focusInput;">
+                    <li class="current-tag tag slide-left" ng-repeat="tag in file.tags | orderBy: 'name'" >
+                      <span >{{tag.name}}</span> <!-- ng-click="unassignTag(tag, file)" -->
+                    </li>
+                    <p class=" floating" ng-show="(!file.tags || file.tags.length) && !editingTags" >Edit tags</p>
+                    <p class="" ng-show="(!file.tags || !file.tags.length) && editingTags" >Select an existing tag to assign it, or create a new one</p>
+                    <p class="" ng-hide="!file.tags || file.tags.length || editingTags">Add tags</p>
+                </ul>
+              </div>
+              <span ng-if="file.type === 'image'" class="file-size fade-toggle"><div></div> <span>{{file.percentSize}}%</span></span>
+              <section class="file-save" ng-if="file.type === 'note'">
+                <button ng-click="saveNote()" w-mousetrap="{'command+s': saveNote}" ng-class="{'inactive': noteChanged === false,'saving': savingNote === true, 'saved': savingDone === true}" >
+                  <span class="active" ng-show="!savingNote && !savingDone">
+                    Save
+                  </span>
+                  <span class="saving">
+
+                  </span>
+                  <span class="saved">
+                    Saved
+                  </span>
+                </button>
+              </section>
+            </div>
+            <!-- List of all tags -->
+            <section ng-controller="TagsController" class="slide-down" id="edit-tags" ng-init="findAndCheck()"  ng-if="editingTags" click-outside="toggleTagEdit">
+                <ul id="inline-tags">
+                    <li class="inline-tag tag" ng-repeat="tag in tags | orderBy: 'name'" ng-class="{'exists': !tag.exists}">
+                        <span ng-show="tag.exists" ng-click="unassignTag(tag, file)">{{tag.name}}</span>
+                        <span ng-show="!tag.exists" ng-click="assignTag(tag, file)">{{tag.name}}</span>
+                    </li>
+                    <p ng-hide="!tags || tags.length">No tags yet.</p>
+                </ul>
+
+                <div class="modal-form" role="form" ng-submit="createForm(file)">
+                  <form>
+                    <input type="text" ng-model="name" id="name" placeholder="Tag name" focus-me="focusInput" required >
+                    <button type="submit">Add</button>
+                  </form>
+                </div>
+
+            </section>
+            <div ng-if="file.hasThumbnail" class="file-content" full-image-init loadedclass="loaded" ng-class="{'zoom': zoomEnabled, 'full-view': fullViewEnabled}">
+            </div>
+            <!-- Note -->
+            <div ng-show="file.type === 'note'" class="file-note">
+              <div ui-codemirror="editorOptions" ng-model="file.content" ui-refresh="refreshEditor"></div>
+            </div>
+        </section>
+        <!-- Link -->
+        <section ng-if="_filemodalItem().kind === 'link'" ng-controller="LinkController" ng-init="findOneModal(_filemodalItem().path)" id="link-container">
+            <div class="file-top">
+              <h2>
+                <div ng-show="link.isFavourite !== undefined">
+                    <span ng-show="link.isFavourite" ng-click="removeFavourite(link)" class="favourite checked">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                           width="19px" height="19px" viewBox="0 0 19 19" enable-background="new 0 0 19 19" xml:space="preserve">
+                        <g transform="translate(-339.000000, -208.000000)">
+                          <path class="favourite-svg"  fill="#1A1918" stroke="#7B859C" d="M356.395,214.332l-4.683-0.719l-2.036-4.363c-0.214-0.458-0.673-0.751-1.177-0.751
+                            c-0.504,0-0.962,0.293-1.177,0.751l-2.036,4.363l-4.684,0.719c-0.482,0.074-0.881,0.413-1.036,0.877
+                            c-0.155,0.465-0.038,0.977,0.302,1.327l3.432,3.538l-0.796,4.907c-0.081,0.494,0.127,0.99,0.533,1.279
+                            c0.223,0.158,0.486,0.239,0.749,0.239c0.216,0,0.432-0.055,0.629-0.163l4.083-2.269l4.084,2.269
+                            c0.196,0.108,0.413,0.163,0.628,0.163c0.263,0,0.525-0.081,0.749-0.239c0.406-0.289,0.614-0.786,0.533-1.279l-0.796-4.907
+                            l3.433-3.538c0.34-0.35,0.456-0.862,0.302-1.327C357.276,214.745,356.876,214.405,356.395,214.332z"/>
+                        </g>
+                        </svg>
+                    </span>
+                    <span ng-hide="link.isFavourite" ng-click="addFavourite(link)" class="favourite empty">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                           width="19px" height="19px" viewBox="0 0 19 19" enable-background="new 0 0 19 19" xml:space="preserve">
+                        <g transform="translate(-339.000000, -208.000000)">
+                          <path class="favourite-svg"  fill="#1A1918" stroke="#7B859C" d="M356.395,214.332l-4.683-0.719l-2.036-4.363c-0.214-0.458-0.673-0.751-1.177-0.751
+                            c-0.504,0-0.962,0.293-1.177,0.751l-2.036,4.363l-4.684,0.719c-0.482,0.074-0.881,0.413-1.036,0.877
+                            c-0.155,0.465-0.038,0.977,0.302,1.327l3.432,3.538l-0.796,4.907c-0.081,0.494,0.127,0.99,0.533,1.279
+                            c0.223,0.158,0.486,0.239,0.749,0.239c0.216,0,0.432-0.055,0.629-0.163l4.083-2.269l4.084,2.269
+                            c0.196,0.108,0.413,0.163,0.628,0.163c0.263,0,0.525-0.081,0.749-0.239c0.406-0.289,0.614-0.786,0.533-1.279l-0.796-4.907
+                            l3.433-3.538c0.34-0.35,0.456-0.862,0.302-1.327C357.276,214.745,356.876,214.405,356.395,214.332z"/>
+                        </g>
+                        </svg>
+                    </span>
+                </div>
+                <span>{{link.name}}</span>
+              </h2>
+              <section class="file-nav">
+                <section class="icon-more">
+                  <div class="dropdown-trigger"
+                       dropdown-menu="linkMoreMenu"
+                       dropdown-model="linkMoreMenuSelected"
+                       dropdown-item-label="text"
+                       dropdown-onchange="editContent(selected)">
+                      <span></span>
+                  </div>
+                </section>
+
+              </section>
+            </div>
+          <div class="file-details">
+            <div id="current-tags-container">
+              <span class="tag-icon" ng-click="editingTags = !editingTags"><object data="img/interface/icons/tag.svg" type="image/svg+xml"></object></span>
+              <!-- Tags assigned to the item -->
+              <ul id="current-tags" ng-click="editingTags = !editingTags">
+                  <li class="current-tag tag slide-left" ng-repeat="tag in link.tags | orderBy: 'name'" >
+                    <span >{{tag.name}}</span> <!-- ng-click="unassignTag(tag, file)" -->
+                  </li>
+                  <p class=" floating" ng-show="(!link.tags || link.tags.length) && !editingTags" >Edit tags</p>
+                  <p class="" ng-show="(!link.tags || !link.tags.length) && editingTags" >Select an existing tag to assign it, or create a new one</p>
+                  <p class="" ng-hide="!link.tags || link.tags.length || editingTags">Add tags</p>
+              </ul>
+            </div>
+          </div>
+          <!-- List of all tags -->
+          <section ng-controller="TagsController" class="slide-down" id="edit-tags" ng-init="findAndCheck()"  ng-if="editingTags" click-outside="toggleTagEdit">
+              <ul id="inline-tags">
+                  <li class="inline-tag tag" ng-repeat="tag in tags | orderBy: 'name'" ng-class="{'exists': !tag.exists}">
+                      <span ng-show="tag.exists" ng-click="unassignTag(tag, link)">{{tag.name}}</span>
+                      <span ng-show="!tag.exists" ng-click="assignTag(tag, link)">{{tag.name}}</span>
+                  </li>
+                  <p ng-hide="!tags || tags.length">No tags yet.</p>
+              </ul>
+
+              <div class="modal-form" role="form" ng-submit="createForm(link)">
+                <form>
+                  <input type="text" ng-model="name" id="name" placeholder="Tag name" required >
+                  <button type="submit">Add</button>
+                </form>
+              </div>
+          </section>
+          <div class="file-content" ng-click="openLink(link)">
+            <section>
+                <span >Last opened:
+                  <span ng-if="link.lastOpened" am-time-ago="link.lastOpened"></span>
+                  <span ng-if="!link.lastOpened">never</span>
+                </span>
+              <p><img ng-src="{{link.faviconUrl}}" alt="{{link.name}}" /><span>{{link.prettyUrl[1]}}</span>{{link.prettyUrl[2]}}</p>
+              <h3>
+                {{link.name}}
+              </h3>
+            </section>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

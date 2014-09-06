@@ -1,0 +1,8 @@
+<div class="toggle-custom = modal-backdrop" ng-if="_modalShow()" ng-click="_modalClose()" w-mousetrap="{'escape': _modalClose}"></div>
+<div class="slide-down-custom modal-container" ng-if="_modalShow()">
+  <div class="modal-window">
+    <div class="modal-dialog {{_modalType()}}">
+      <div class="modal-content" ng-include="_modalContent()"></div>
+    </div>
+  </div>
+</div>

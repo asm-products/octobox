@@ -1,0 +1,19 @@
+<div class="modal-title">
+  <h2>Add New Stack</h2>
+  <button ng-click="$parent._modalClose()">×</button>
+</div>
+<div ng-controller="StacksController" class="add-stack-modal add">
+  <form role="form" ng-submit="create($parent._modalItem())" ng-show="!loading" ng-init="loading = false">
+    <input type="text" ng-model="name" id="stack-name" placeholder="Stack Name" autofocus required>
+    <button type="submit">Add</button>
+  </form>
+  <div class="add-stack-intro modal-form" ng-show="!loading" >
+    <!-- <span class="add-stack-icon">octobot</span> -->
+    <p>
+      Stacks hold your images, notes, links and more; they can also be tagged. Use them to organize your content better.
+    </p>
+  </div>
+  <div ng-show="loading" class="loading">
+    Creating stack &hellip;
+  </div>
+</div>

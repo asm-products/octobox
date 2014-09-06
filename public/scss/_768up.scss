@@ -1,0 +1,19 @@
+/*
+ * Site Name:
+ * Author:
+ *
+ * Stylesheet: 768 & Up
+ *
+ * This is the base tablet style.
+ */
+
+ // List view grid - 2 columns
+ .deckgrid[deckgrid]::before {
+     content: '2 .column.column-1-2';
+     font-size: 0;
+     visibility: hidden;
+ }
+
+ .deckgrid .column-1-2 {
+     width: 50%;
+ }

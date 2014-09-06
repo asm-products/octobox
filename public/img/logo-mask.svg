@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="39px" height="39px"
+	 viewBox="0 0 39 39" enable-background="new 0 0 39 39" xml:space="preserve">
+
+<title>Logo Mask</title>
+<defs>
+	<mask id='logo_mask'>
+		<polygon id="path-1_2_" fill="none" stroke="#FFFFFF" stroke-width="2" points="19.376,1.504 31.597,6.775 37.428,19.5
+			31.597,32.224 19.376,37.495 7.155,32.224 1.325,19.5 7.155,6.775 	"/>
+		<path id="Line_1_" sketch:type="MSShapeGroup" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round" d="
+			M37.021,19.802L37.021,19.802 M36.655,19.74l-16.93-0.005l5.114-5.301L7.169,7.01l17.668,7.424l6.909-7.333l-6.909,7.333
+			l12.184,5.368 M19.376,37.495l17.416-17.693l-17.067-0.067l-6.717,6.964L8.81,19.693l-7.478-0.029l7.477,0.029l0,0l4.198,7.006
+			l-5.852,5.525l5.852-5.525L19.376,37.495 M24.838,14.434l-5.114,5.301L8.809,19.693l-4.291-7.162l4.291,7.162l0,0l10.915,0.043
+			L13.007,26.7"/>
+</mask>
+</defs>
+<g id="Page-1" sketch:type="MSPage">
+	<polygon id="path-1_2_" fill="none" stroke="#FFFFFF" stroke-width="2" points="19.376,1.504 31.597,6.775 37.428,19.5
+		31.597,32.224 19.376,37.495 7.155,32.224 1.325,19.5 7.155,6.775 	"/>
+	<path id="Line_1_" sketch:type="MSShapeGroup" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round" d="
+		M37.021,19.802L37.021,19.802 M36.655,19.74l-16.93-0.005l5.114-5.301L7.169,7.01l17.668,7.424l6.909-7.333l-6.909,7.333
+		l12.184,5.368 M19.376,37.495l17.416-17.693l-17.067-0.067l-6.717,6.964L8.81,19.693l-7.478-0.029l7.477,0.029l0,0l4.198,7.006
+		l-5.852,5.525l5.852-5.525L19.376,37.495 M24.838,14.434l-5.114,5.301L8.809,19.693l-4.291-7.162l4.291,7.162l0,0l10.915,0.043
+		L13.007,26.7"/>
+</g>
+</svg>

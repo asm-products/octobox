@@ -1,0 +1,9 @@
+//- Load Minified App
+//- if (process.env.NODE_ENV == 'production')
+//-   script(type='text/javascript', src='../js/octobox.min.js')
+
+script(type='text/javascript', src='../js/octobox.js')
+
+//- Livereload script rendered on dev environment
+if (process.env.NODE_ENV == 'development')
+  script(type='text/javascript', src='http://' + req.host + ':35729/livereload.js')

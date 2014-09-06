@@ -1,0 +1,13 @@
+extends auth
+
+block auth
+  form(action="/api/users/session", method="post")
+    input#email(type='email', name="email", placeholder='Email', autofocus)
+
+    input#password(type='password', name="password", placeholder='Password')
+
+    button(type='submit') Sign in
+  p Not a member?&nbsp; 
+    a(href="/signup") Create an account →
+
+  a(href="/forgot") Forgot your password?

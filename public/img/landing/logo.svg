@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="114px" height="112px" viewBox="0 0 114 112"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>Logo</title>
+
+    <g id="Page-1" stroke="none"  fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <mask id="mask-2" sketch:name="Polygon 1" stroke-width="4" fill="white">
+            <polygon id="path-1"  points="56.6611578 1 95.0217323 17.2515206 113.322316 56.4861619 95.0217323 95.7208032 56.6611578 111.972324 18.3005833 95.7208032 0 56.4861619 18.3005833 17.2515206"></polygon>
+        </mask>
+        <path stroke-linejoin="round" d="M11,35 L57.3815522,110.47787 L112.22418,54.9411999" id="i-0" stroke="#fff" stroke-width="4" sketch:type="MSShapeGroup" ></path>
+        <path stroke-linejoin="round" d="M95.296532,18.05398 L18.3085624,95.3013205" id="i-1" stroke="#fff"  stroke-width="4" sketch:type="MSShapeGroup" ></path>
+         <path stroke-linejoin="round" d="M3,55.4787432 L110,55.9030918 L19,18" id="i-2" stroke="#fff"  stroke-width="4" sketch:type="MSShapeGroup" ></path>
+        <path d="M57.2550796,2.23254395 L19.4437768,18.4216309 L1.72897642,56.3955078 L19.4437768,94.6130371 L56.8220871,110.452759 L94.0344617,94.6130371 L111.79434,56.3955078 L94.0344617,18.2734375 L56.1652885,2.23254395" id="i-3" stroke="#fff"  stroke-width="4" sketch:type="MSShapeGroup" ></path>
+    </g>
+</svg>

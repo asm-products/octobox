@@ -1,0 +1,15 @@
+<section ng-controller="UserController" ng-init="findOne()">
+	<label for="dbEmail" class="control-label">Authorized Dropbox Account</label>
+	<label for="dbEmail">{{user.dropbox.email}}</label>
+	<button ng-click="revoke()">Revoke Access</button>
+	<form role="form" ng-submit="update()">
+			<div class="field">
+				<label for="name" class="control-label">Your Name</label>
+				<input type="text" ng-model="user.name" id="name" placeholder="Name" required>
+			</div>
+
+
+			<button type="submit">Submit</button>
+
+	</form>
+</section>

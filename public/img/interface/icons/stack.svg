@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="17px" height="17px"
+	 viewBox="0 0 17 17" enable-background="new 0 0 17 17" xml:space="preserve">
+<g id="stack-svg">
+			<path id="Rectangle-10" fill="#FFFFFF" stroke="#939CB0" d="M6.492,4.492h7c1.105,0,2,0.895,2,2v7
+				c0,1.105-0.895,2-2,2h-7c-1.105,0-2-0.895-2-2v-7C4.492,5.387,5.387,4.492,6.492,4.492z"/>
+			<path id="Rectangle-9" fill="#FFFFFF" stroke="#939CB0" d="M4.492,2.492h7c1.105,0,2,0.895,2,2v7
+				c0,1.105-0.895,2-2,2h-7c-1.105,0-2-0.895-2-2v-7C2.492,3.387,3.387,2.492,4.492,2.492z"/>
+			<path id="Rectangle-8" fill="#FFFFFF" stroke="#939CB0" d="M2.492,0.492h7c1.105,0,2,0.895,2,2v7
+				c0,1.105-0.895,2-2,2h-7c-1.105,0-2-0.895-2-2v-7C0.492,1.387,1.387,0.492,2.492,0.492z"/>
+			<path fill="#BFC4D0" d="M0.961,9.664c0,0.606,0.758,1.344,1.359,1.344h7.312c0.601,0,1.359-0.649,1.359-1.266V6.602
+					c0,0-0.638,1.071-2.274,1.071s-2.181-2.18-4.361-2.18S0.961,7.602,0.961,7.602V9.664z"/>
+			<circle id="Oval-10" opacity="0.9" fill="none" stroke="#BFC4D0" enable-background="new" cx="8.492" cy="3.242" r="0.5">
+			</circle>
+</g>
+</svg>

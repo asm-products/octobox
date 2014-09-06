@@ -1,0 +1,21 @@
+.windows{
+  ::-webkit-scrollbar {
+      width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+      -webkit-border-radius: 8px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.1);
+  }
+
+  ::-webkit-scrollbar-thumb {
+      -webkit-border-radius: 8px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.2);
+      @include transition(background 0.15s ease);
+  }
+  ::-webkit-scrollbar-thumb:window-inactive {
+      background: rgba(0, 0, 0, 0.1);
+  }
+}

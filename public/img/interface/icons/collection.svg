@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<?xml-stylesheet type="text/css" href="../../../../css/style.min.css" ?>
+<svg version="1.1" class="collection-svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="18px" height="16px"
+	 viewBox="0 0 18 16" enable-background="new 0 0 18 16" xml:space="preserve">
+
+<title>Collection</title>
+<g>
+	<path class="collection-back" fill="#D9DEEA" stroke="#939CB1" d="M10.502,2.545
+				c-0.554,0-1.315-0.32-1.702-0.716l0.099,0.102C8.126,1.14,6.601,0.498,5.501,0.498H2.497c-1.103,0-1.998,0.897-1.998,2.006v9.988
+				c0,1.108,0.893,2.006,1.992,2.006h11.016c1.1,0,1.992-0.898,1.992-2.001V4.546c0-1.105-0.887-2.001-2.006-2.001H10.502z"/>
+	<path class="collection-front" fill="#FFFFFF" stroke="#939CB0" d="M4.505,4.498c-1.108,0-2.006,0.887-2.006,2
+				v6.001c0,1.104,0.897,2,2.006,2h9.988c1.108,0,2.006-0.887,2.006-2V6.498c0-1.104-0.897-2-2.006-2H4.505z"/>
+</g>
+</svg>

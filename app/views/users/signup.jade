@@ -1,0 +1,15 @@
+extends auth
+
+block auth
+  form(action="/api/users", method="post")
+    input#name(type='text', name="name", placeholder='Full name', value=user.name, autofocus)
+
+    input#email(type='email', name="email", placeholder='Email', value=user.email)
+
+    input#password(type='password', name="password", placeholder='Password')
+
+    input#password(type='password', name="passwordConfirmation", placeholder='Confirm Password')
+
+    button(type='submit') Sign up
+    p Already a member? 
+        a(href="/signin") Sign in →

@@ -1,0 +1,10 @@
+extends auth
+
+block auth
+  form(method='post')
+    legend
+      | To reset your password enter your account email below. Reset link will be active for 24 hours.
+    input(type='text', name='email', placeholder='Email', autofocus)
+    button(type='submit') Reset Password
+    p
+    a(href="/signin") Suddenly remembered?

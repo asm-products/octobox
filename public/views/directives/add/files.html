@@ -1,0 +1,58 @@
+<div class="modal-title">
+  <h2>Add files to {{$parent._modalItem()}}</h2>
+  <button ng-click="$parent._modalClose()">×</button>
+</div>
+<div class="add-files-modal add" ng-controller="FileController" >
+  <div class="add-files-modal-content">
+    <div ng-controller="FileDropController" class="file-drop">
+      <!-- <input type="text" ng-model="myModelObj"> -->
+      <div ng-file-drop="onFileSelect($files)" class="drop-area" ng-file-drag-over-class="drop-active"
+            ng-show="dropSupported">Drag files here or<br>
+            <div class="file-upload">
+                <span>browse</span>
+                <input type="file" ng-file-select="onFileSelect($files)" multiple>
+            </div>
+            for files to upload</div>
+      <div ng-file-drop-available="dropSupported=true"
+            ng-show="!dropSupported">HTML5 Drop File is not supported!</div>
+      <div class="err" ng-show="errorMsg != null">{{errorMsg}}</div>
+      <div ng-show="selectedFiles !== null" class="sel-files">
+        <div class="sel-file" ng-repeat="f in selectedFiles">
+          <div class="thumbnail-containter" ng-class="{'note-icon': item.type === 'note'}">
+            <div ng-show="item.type === 'note'"></div>
+            <img ng-show="dataUrls[$index]" ng-src="{{dataUrls[$index]}}">
+          </div>
+          <span class="progress" ng-show="progress[$index] >= 0">
+            <div style="width:{{progress[$index]}}%; opacity: {{(progress[$index] / 100) + 0.2}}">{{progress[$index]}}%</div>
+          </span>
+          <button class="upload-button" ng-click="abort($index, progress[$index])"``
+               ng-class="{'abort': hasUploader($index) && progress[$index] < 100, 'adding': hasUploader($index) && progress[$index] === 100 && finished[$index] == false, 'done': hasUploader($index) && finished[$index]}">
+            <span class="abort" ng-show="hasUploader($index) && progress[$index] < 100"><div></div></span>
+            <span class="done" ng-show="hasUploader($index) && finished[$index]"><div></div></span>
+          </button>
+        </div>
+      </div>
+      <div class="modal-divider"></div>
+    </div>
+    <form role="form" ng-submit="createFromURL($parent._modalItem())" ng-show="!loading" ng-init="loading = false">
+      <input type="text" ng-model="url" id="link-url" placeholder="Add by URL" autofocus required>
+      <button type="submit">Add</button>
+    </form>
+    <div ng-show="loading" class="loading">
+      Adding file &hellip;
+    </div>
+  </div>
+  <div class="add-files-intro modal-form" >
+    <p>
+      Currently supported file formats are:
+      <span>.jpg</span>,
+      <span>.jpeg</span>,
+      <span>.png</span>,
+      <span>.gif</span> &amp;
+      <span>.bmp</span> for images and
+      <span>.md</span>,
+      <span>.md</span> &amp;
+      <span>.txt</span> for notes. To upload by URL, link directly to the file.
+    </p>
+  </div>
+</div>

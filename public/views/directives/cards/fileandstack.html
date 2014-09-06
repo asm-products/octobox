@@ -1,0 +1,64 @@
+<div bindonce class="list-item-container" >
+  <div class="list-item" bo-class="{stack: mother.isKind(card) === 'stack', link: mother.isKind(card) === 'link'}">
+    <div class="item-bottom-overlay flip-in">
+      <section class="icon-fav" ng-class="{'checked': card.isFavourite, 'unchecked': !card.isFavourite}" ng-click='mother.toggleFavourite(card)'>
+        <div></div>
+      </section>
+      <section class="icon-share" bo-if="mother.isKind(card) !== 'link'" ng-click="mother.modal.open('/views/directives/share.html', card, 'narrow')" >
+        <div></div>
+      </section>
+      <section class="icon-more" bo-if="mother.isKind(card) === 'link'" ng-click="mother.filemodal.open(card)">
+        <div></div>
+      </section>
+    </div>
+    <div class="item-bottom-overlay-background" bo-show="mother.isKind(card) === 'link'"></div>
+    <!-- File -->
+    <section bo-if="mother.isKind(card) === 'file'" ng-click="mother.filemodal.open(card)">
+      <div class="item-top-overlay slide-down">
+        <!-- <span am-time-ago="card.modified"></span> -->
+        <h3 bo-text="card.name"></h3>
+        <span class="item-type" bo-text="card.type"></span>
+      </div>
+      <span class="item-type" bo-if="card.type === 'gif'" bo-text="card.type"></span>
+      <!-- Image -->
+      <div bo-if="card.hasThumbnail" class="list-thumbnail">
+        <img ng-init="mother.getThumbnail(card)" bo-src-i="{{card.thumbnailUrl}}" imageloaded loadedclass="loaded" class="toggle-custom"/>
+      </div>
+
+      <!-- Note Excerpt -->
+      <div bo-if="card.type === 'note'" class="list-excerpt" ng-class="{'note-loaded': card.excerpt !== null &&  card.excerpt !== undefined}">
+        <div class="note-overlay"></div>
+        <div class="excerpt" ng-init="mother.getExcerpt(card)" mini-markdown="card.excerpt">
+      </div>
+    </section>
+    <!-- Link -->
+    <section bo-if="mother.isKind(card) === 'link'" ng-click="mother.openLink(card)">
+      <h3><img bo-src-i="{{card.faviconUrl}}"/><span bo-text="card.prettyUrl[1]"></span><a bo-text="card.prettyUrl[2]"></a></h3>
+      <p bo-text="card.name"></p>
+    </section>
+    <!-- Stack -->
+    <section bo-if="mother.isKind(card) === 'stack'" ng-click="mother.goTo(card.path)" class="list-stack">
+      <div class="item-overlay">
+        <div class="item-overlay-content">
+          <span class="item-type">Stack</span>
+          <h3 bo-text="card.name"></h3>
+          <span><i bo-text="card.count"></i> items</span>
+        </div>
+      </div>
+      <div bo-if="card.hasThumbnail || card.type === 'image'" class="list-thumbnail">
+        <img ng-init="mother.getThumbnail(card)" bo-src-i="{{card.thumbnailUrl}}" imageloaded loadedclass="loaded" class="toggle-custom"/>
+      </div>
+      <!-- Empty Stack -->
+      <div bo-show="mother.isKind(card) === 'stack' && card.thumbnailUrl === undefined && card.type !== 'note'" class="list-empty">
+      </div>
+      <div bo-if="card.type === 'note'" class="list-excerpt" ng-class="{'note-loaded': card.excerpt !== null &&  card.excerpt !== undefined}">
+        <div class="note-overlay"></div>
+        <div class="excerpt" ng-init="mother.getExcerpt(card)" mini-markdown="card.excerpt">
+      </div>
+    </section>
+  </div>
+  <div bo-if="mother.isKind(card) === 'stack'" class="stack-background">
+    <div class="background-card"></div>
+    <div class="background-card"></div>
+  </div>
+</div>

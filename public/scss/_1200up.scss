@@ -1,0 +1,19 @@
+/*
+ * Site Name:
+ * Author:
+ *
+ * Stylesheet: 1200 & Up
+ *
+ * This is for the larger monitors and possibly full screen viewers.
+ */
+
+ // List view grid - 5 columns
+ .deckgrid[deckgrid]::before {
+     content: '4 .column.column-1-4';
+     font-size: 0;
+     visibility: hidden;
+ }
+
+ .deckgrid .column-1-4 {
+     width: 25%;
+ }

@@ -1,0 +1,39 @@
+<!-- <div class="modal-title">
+  <h2 ng-if="!$parent._modalItem().kind">Share this {{_modalItem().type}}</h2>
+  <button ng-click="$parent._modalClose()">×</button>
+</div> -->
+<div ng-controller="UserController" ng-init="findOneModal()" class="settings-content">
+  <section class="settings-account">
+    <div class="edit-avatar" ng-click="editAvatar()">
+      <img ng-src="{{global.user.gravatar}}" width="92" />
+      <div class="avatar-hover">
+        Edit on <br>gravatar.com
+      </div>
+    </div>
+    <span click-to-edit="user.name" callback="update(newName, cb)" kind="'user'" class="edit-username">{{user.name}}</span>
+    <a ng-show="!showReset" ng-click="toggleResetPassword()" >
+      Reset Password
+    </a>
+    <div are-you-sure ng-show="showReset" action="resetPassword()" hide="toggleResetPassword()" action-name="Reset" class="are-you-sure slide-left">
+    </div>
+  </section>
+  <section class="settings-dropbox">
+    <div class="icon-dropbox">
+      <span></span>
+    </div>
+    <p>
+      Your authorized Dropbox account is <b>{{accountInfo.email}}</b> and you have <b>{{accountInfo.spaceLeft}} GB</b> space left.
+    </p>
+    <div class="revoke-container">
+    <button ng-click="toggleRevokeConfirm()">Revoke Access</button>
+    <div are-you-sure ng-show="showRevoke" action="revoke()" hide="toggleRevokeConfirm()" action-name="Revoke" class="are-you-sure slide-left">
+    </div></div>
+    <p class="small">
+      Revoking access will remove <b>all your data</b> from Octobox, including files, tags and links.
+      This data cannot be recovered. No files will be removed from Dropbox.
+    </p>
+  </section>
+  <div class="modal-form">
+    <button name="done" ng-click="$parent._modalClose()">Done</button>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="modal-title">
+  <h2 ng-if="!$parent._modalItem().kind">Share this {{_modalItem().type}}</h2>
+  <h2 ng-if="$parent._modalItem().kind">Share this {{_modalItem().kind}}</h2>
+  <button ng-click="$parent._modalClose()">×</button>
+</div>
+<div ng-controller="ShareController" class="share-content" ng-init="initialize($parent._modalItem())">
+  <section class="share-item">
+    <div class="thumbnail-containter" ng-class="{'note-icon': item.type === 'note'}">
+      <div ng-show="item.type === 'note'"></div>
+      <img ng-src="{{item.thumbnailUrl}}" imageloaded loadedclass="loaded"/>
+    </div>
+    <div class="share-item-details">
+      <h2>{{item.name}}</h2>
+      <span ng-if="item.count" class="share-item-modified">{{item.count}} items</span>
+      <span am-time-ago="item.modified" class="share-item-modified"></span>
+      <span>{{item.size}}</span>
+    </div>
+  </section>
+  <div class="modal-divider"></div>
+  <form>
+    <label for="url"><object data="img/interface/icons/link.svg" type="image/svg+xml"></object></label>
+    <input type="text" ng-model="item.shareUrl" id="url_field" placeholder="generating link&hellip;">
+    <button clip-copy="copyPublicUrl(item.shareUrl)" clip-click="clickCopyUrl()">Copy</button>
+  </form>
+  <div class="share-social">
+    <h3 ng-if="!_modalItem().kind">Post {{_modalItem().type}} on:</h3>
+    <h3 ng-if="_modalItem().kind">Post {{_modalItem().kind}} on:</h3>
+    <section class="share-social-tabs">
+      <span class="social-tab-twitter" name="Twitter" ng-class="{'active': selectedSocial === 't'}" ng-click="selectedSocial = 't'">
+        Twitter
+      </span>
+      <span class="social-tab-twitter" name="Facebook" ng-class="{'active': selectedSocial !== 't'}" ng-click="selectedSocial = 'f'">
+        Facebook
+      </span>
+    </section>
+    <section class="share-social-input">
+      <textarea ng-model="shareMessage"></textarea>
+    </section>
+    <section class="share-social-buttons">
+      <button name="cancel" ng-click="$parent._modalClose()">Cancel</button>
+      <button name="post" ng-click="clickShare()">Post</button>
+    </section>
+  </div>
+</div>

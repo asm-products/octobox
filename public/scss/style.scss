@@ -1,0 +1,98 @@
+/*
+ * Site Name:
+ * Author:
+ * URL:
+ *
+ * Stylesheet: Main Stylesheet
+ */
+
+/* import normalize.css */
+@import "../lib/normalize.css/normalize.css";
+
+/* import bourbon */
+@import "../lib/bourbon/dist/bourbon";
+/* import neat */
+@import "../lib/neat/app/assets/stylesheets/neat";
+
+/* import settings */
+@import "settings";
+
+
+/*
+ * BASE (MOBILE) SIZE
+ */
+
+@import "base";
+
+/*
+ * LARGER MOBILE DEVICES
+ */
+
+@media only screen and (min-width: 481px) {
+	@import "481up";
+} /* end of media query */
+
+
+/*
+ * TABLET & SMALLER LAPTOPS
+ */
+
+@media only screen and (min-width: 768px) {
+	@import "768up";
+} /* end of media query */
+
+
+/*
+ * DESKTOP
+ */
+
+@media only screen and (min-width: 1023px) {
+	@import "1023up";
+} /* end of media query */
+
+/*
+ *  MID DESKTOP
+ */
+
+@media only screen and (min-width: 1200px) {
+  @import "1200up";
+} /* end of media query */
+
+
+/*
+ * LARGE VIEWING SIZE
+ */
+
+@media only screen and (min-width: 1382px) {
+	@import "1382up";
+} /* end of media query */
+
+
+/*
+ * VERY LARGE VIEWING SIZE
+ */
+
+@media only screen and (min-width: 1682px) {
+  @import "1682up";
+} /* end of media query */
+
+
+/*
+ * RETINA (2x RESOLUTION DEVICES)
+ */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-device-pixel-ratio: 1.5) {
+	@import "2x";
+} /* end of media query */
+
+
+/*
+ * PRINT STYLESHEET
+ */
+
+@media print {
+	@import "print";
+} /* end print media query */
+

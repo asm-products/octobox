@@ -1,0 +1,68 @@
+/*
+ * Site Name:
+ * Author:
+ *
+ * Stylesheet: Base Mobile Styles
+ *
+ * Be light and don't over style since everything here will be
+ * loaded by mobile devices. You want to keep it as minimal as
+ * possible.
+ *
+ */
+
+html{
+  height: 100%;
+  -ms-touch-action: manipulation; // removes touch delay on some browsers
+  touch-action: manipulation;
+}
+body{
+	font-family: $sans-serif;
+  line-height: 1.5;
+	position: relative;
+	min-height: 100%;
+}
+button{
+  outline: none;
+}
+
+// Typography
+  h1{
+    font-size: em(18);
+    color: $black;
+    font-weight: 500;
+  }
+
+// Content
+  #content{
+    padding-top: em(80);
+    @include clearfix;
+  }
+
+// override capitalize
+// TODO: implement setting and compile selectors
+.dont-capitalize{
+  aside h4, .filemodal-content h2, .list-stack h3, #view-title h1, .item-top-overlay h3, .move-list>ul h4, .move-list>ul h5, .modal-dialog h2{
+    text-transform: none;
+  }
+}
+
+// layouty stuff
+@import "app-header";
+@import "app-sidebar";
+@import "app-list-view";
+@import "app-settings";
+@import "app-file-modal";
+@import "app-filters";
+@import "app-scrollbar";
+@import "app-onboard";
+
+// moduley stuff
+@import "app-dropdowns";
+@import "app-modal";
+@import "app-click-to";
+@import "app-editor";
+@import "app-icons";
+@import "colors";
+@import "app-note-save-btn";
+@import "app-upload-btn";
+@import "app-animations";

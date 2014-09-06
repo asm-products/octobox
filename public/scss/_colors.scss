@@ -1,0 +1,258 @@
+// Colors
+
+  // Define & Apply Colors
+  @each $i, $color in (0,  #7b859c), // Inbox, Recent
+                      (1,  #4a90e2), // Tags
+                      (2,  #7566fa), // Violet
+                      (3,  #60c3c3),
+                      (4,  #e74c3c), // Alizarin
+                      (5,  #539ff7), // Blue
+                      (6,  #8e44ad), // Wisteria
+                      (7,  #6fd01a), // Lime Green
+                      (8,  #1abc9c), // Turquoise
+                      (9,  #f39c12), // Orange
+                      (10, #3498db), // Peter River
+                      (11, #f6a61e),
+                      (12, #9f8adc),
+                      (13, darken(#fd94ab, 10%)),
+                      (14, #eaba0f), // Yellow
+                      (15, #5fc783),
+                      (16, #af85d5),
+                      (17, #70b8f3),
+                      (18, #2ecc71), // Emerald
+                      (19, #90ccc1),
+                      (20, #9Bcd55),
+                      (21, #2699b9)
+                      {
+    body.color-#{$i} {
+      // Logo
+      .app-logo{
+        // Defualt logo is not gray
+        @if $i == 0{
+          background-color: #fda043;
+        } @else {
+          background-color: #{$color};
+        }
+      }
+      // Favourite Icon
+      #app-header .favourite, .filemodal-window .favourite{
+        .favourite-svg{
+          stroke: darken($color, 5%);
+          fill: darken($color, 5%);
+          fill-opacity: 0.0;
+          @include transition(fill-opacity 0.15s ease-in-out);
+          &:hover{
+            fill-opacity: 0.2;
+          }
+        }
+        &.checked {
+          @include transition(fill-opacity 0.15s ease-in-out);
+          .favourite-svg{
+            fill-opacity: 0.6;
+            &:hover{
+              fill-opacity: 0.7;
+            }
+          }
+        }
+      }
+
+      // Add dropdown Title
+      #app-header .dropdown li:first-child a{
+        color: #{$color};
+      }
+      // List view - x days ago
+      .item-top-overlay{
+        span:first-child{
+          color: #{$color};
+        }
+      }
+      .list-stack{
+        .item-type{
+          color: darken($color, 10%);
+        }
+      }
+      .item-bottom-overlay{
+        background: rgba(desaturate(darken($color, 15%), 15%), 0.85);
+
+        &:hover{
+          background: rgba(desaturate(darken($color, 15%), 15%), 0.95);
+        }
+      }
+      // Buttons
+      .modal-dialog form button{
+        background-color: #{$color};
+        border-color: darken($color, 7%);
+
+        &:hover{
+          border-color: $color;
+          background-color: lighten($color, 10%);
+        }
+      }
+      // File upload modal
+      .progress{
+        div{
+          border-color: darken($color, 7%);
+          background: #{$color};
+        }
+        &.done{
+          div{
+            background: lighten(desaturate($color, 20%), 20%);
+            border-color: lighten(desaturate($color, 20%), 20%);
+          }
+        }
+      }
+      // List view - stack count
+      // .stack-count{
+      //   background: desaturate(darken($color, 20%),60%);
+      //   color: $white;
+      //   opacity: 0.8;
+      // }
+      // List view filters - edit + icon
+      // List view - share/fav overlay
+      // File view - favourite icon
+      .click-to-edit button{
+        color: #{$color};
+      }
+      // Share modified
+      .share-item-modified{
+        color: #{$color};
+      }
+
+      // file upload droparea
+      .drop-active{
+        border-color: #{$color};
+      }
+      .file-upload{
+        color: #{$color};
+        &:hover{
+          color: darken($color, 10%);
+        }
+      }
+      // file back
+      // .back-svg{
+      //   stroke: #{$color};
+      // }
+      // .back-arrow:hover .back-svg{
+      //   fill: #{$color};
+      // }
+
+      // file popup meta
+      .file-meta span span{
+        color: #{$color};
+      }
+      // link meta
+      #link-container .file-content section span span{
+        color: #{$color};
+      }
+      // file view tags
+      #edit-tags, #current-tags{
+        li span{
+          background-color: #{$color};
+        }
+
+      }
+      #edit-tags li:hover span{
+        background-color: lighten(desaturate($color, 10%), 5%);
+      }
+      #edit-tags li.exists:hover span{
+        background-color: lighten(desaturate($color, 55%), 15%);
+      }
+      // Settings
+      .settings-account > a{
+        &:hover{
+          color: #{$color};
+          border-color: #{$color};
+        }
+      }
+      .are-you-sure a:first-child{
+        color: #{$color};
+      }
+      // file editor
+        // selection
+        // .CodeMirror-selected { background: desaturate(lighten($color, 25%), 25%); }
+        // .CodeMirror-focused .CodeMirror-selected { background: lighten($color, 25%); }
+
+        // headers
+        .cm-s-default .cm-header {
+          // color: desaturate(darken($color, 15%), 30%);
+        }
+    }
+    // Sidebar
+    // Collections & Tags
+    #sidebar-collections, #sidebar-favourites{
+      li.color-#{$i} {
+        .collection-icon{
+          color: #{$color};
+
+          .collection-back, .collection-front{
+            stroke: #{$color};
+          }
+          .collection-back{
+            fill: lighten(desaturate($color, 20%), 25%);
+            fill-opacity: 0.6;
+          }
+        }
+        &.current, &:hover{
+          color: #{$color};
+          h4 > a {
+            color: #{$color};
+          }
+        }
+      }
+    }
+    // Modal - Move
+    #move-collections{
+      li.color-#{$i} {
+        .collection-icon{
+          color: #{$color};
+
+          .collection-back, .collection-front{
+            stroke: #{$color};
+          }
+          .collection-back{
+            fill: lighten(desaturate($color, 20%), 25%);
+            fill-opacity: 0.6;
+          }
+        }
+        h4:hover, h5:hover, h4.selected, h5.selected{
+          color: #{$color};
+        }
+      }
+    }
+
+    // Tags
+    @if $i == 1{
+      // Tag Icon
+      #app-header .tag-icon{
+        color: #{$color};
+      }
+      #sidebar-tags{
+        li.color-#{$i} {
+          .tag-icon{
+            color: #{$color};
+          }
+          &.current, &:hover{
+            color: #{$color};
+            a {
+              color: #{$color};
+            }
+          }
+        }
+      }
+    }
+    // Inbox, Recent
+    @if $i == 0{
+      #sidebar-main{
+        .color-#{$i} {
+          &.current, &:hover{
+            a{
+              color: #{$color};
+            }
+          }
+          .inbox-icon, .recent-icon{
+            color: #{$color};
+          }
+        }
+      }
+    }
+  }

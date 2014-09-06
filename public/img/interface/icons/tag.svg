@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px"
+	 viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
+<title>Tag - Small</title>
+<description>Created with Sketch.</description>
+<g id="Icons" sketch:type="MSPage">
+	<g id="Tag---Small" transform="translate(-256.000000, -306.000000)" sketch:type="MSArtboardGroup">
+		<g transform="translate(257.000000, 307.000000)" sketch:type="MSLayerGroup">
+			<path id="Path-13" sketch:type="MSShapeGroup" fill="none" stroke="#4A90E2" d="M13.51,2.508c0-1.103-0.898-1.998-1.998-1.998
+				H8.501c-0.547,0-1.313,0.322-1.696,0.706L0.716,7.305c-0.39,0.39-0.383,1.028,0.006,1.417l4.576,4.576
+				c0.393,0.393,1.034,0.39,1.417,0.006l6.089-6.089c0.39-0.39,0.706-1.157,0.706-1.696V2.508z"/>
+			<circle id="Path" sketch:type="MSShapeGroup" fill="none" stroke="#6CA9EF" cx="9.51" cy="4.51" r="0.5">
+			</circle>
+		</g>
+	</g>
+</g>
+</svg>

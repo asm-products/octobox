@@ -1,0 +1,262 @@
+/*
+ * Site Name:
+ * Author:
+ *
+ * Stylesheet: Settings
+ *
+ * Think of this as a 'variable file'. All custom reusable
+ * values will be found here. Neat's grid is also configured here.
+ */
+
+
+/*
+ * COLORS
+ */
+
+$yellow: #ebe16f;
+$red: #e74d3d;
+$green: #70d01b;
+
+
+$blue: #3c8de1; // used for buttons
+$twitter: #44c0ff; // share
+$facebook: #3b5998; // share
+
+$black: #474D5C;
+$white: #fff;
+
+$lightgray: #FAFBFD;
+$lightgray2: #E4E7EC;
+$lightgray3: #EBEEF4;
+$lightgray4: #EBECED;
+
+$midgray: #A2A6B6;
+$midgray2: #889BAC;
+
+$darkgray: #556471;
+$darkergray: #43515D;
+
+/*
+ * GRID
+ */
+$visual-grid: true;
+$visual-grid-color: red;
+$visual-grid-index: front;
+$visual-grid-opacity: 0.5;
+
+// Change the grid settings
+$max-width: em(1030, 12);
+
+/*
+ * TYPOGRAPHY
+ */
+
+$sans-serif: "Avenir Next", "Avenir", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif; // Lato loads on windows
+$serif: "Georgia", Cambria, Times New Roman, Times, serif;
+$mono: Menlo, Consolas, Monaco, "Lucida Console", monospace; //"Source Code Pro",
+
+/*
+ * use the best ampersand
+ * http://simplebits.com/notebook/2008/08/14/ampersands-2/
+ */
+span.amp {
+	font-family: Baskerville,'Goudy Old Style',Palatino,'Book Antiqua',serif;
+	font-style: italic;
+}
+
+
+// Load fonts
+/* Webfont: LatoLatin-Bold */
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/LatoLatin-Bold.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/LatoLatin-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/LatoLatin-Bold.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/LatoLatin-Bold.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 700;
+    text-rendering: optimizeLegibility;
+
+}
+/* Webfont: LatoLatin-Italic */
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/LatoLatin-Italic.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/LatoLatin-Italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/LatoLatin-Italic.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/LatoLatin-Italic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+
+}
+/* Webfont: LatoLatin-Regular */
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/LatoLatin-Regular.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/LatoLatin-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/LatoLatin-Regular.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/LatoLatin-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+
+}
+/* Webfont: LatoLatinLight-Regular */
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/LatoLatinLight-Regular.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/LatoLatinLight-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/LatoLatinLight-Regular.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/LatoLatinLight-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 300;
+    text-rendering: optimizeLegibility;
+
+}
+/* Webfont: LatoLatinMed-Regular */
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/LatoLatinMed-Regular.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/LatoLatinMed-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/LatoLatinMed-Regular.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/LatoLatinMed-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 500;
+    text-rendering: optimizeLegibility;
+
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+      font-family: 'Lato';
+      src: url('../fonts/LatoLatinLight-Regular.svg') format('svg');
+      font-style: normal;
+      font-weight: 300;
+      text-rendering: optimizeLegibility;
+  }
+  @font-face {
+      font-family: 'Lato';
+      src: url('../fonts/LatoLatin-Regular.svg') format('svg');
+      font-style: normal;
+      font-weight: 400;
+      text-rendering: optimizeLegibility;
+  }
+  @font-face {
+      font-family: 'Lato';
+      src: url('../fonts/LatoLatin-Italic.svg') format('svg');
+      font-style: italic;
+      font-weight: 400;
+      text-rendering: optimizeLegibility;
+  }
+  @font-face {
+      font-family: 'Lato';
+      src: url('../fonts/LatoLatin-Bold.svg') format('svg');
+      font-style: normal;
+      font-weight: 700;
+      text-rendering: optimizeLegibility;
+  }
+  @font-face {
+      font-family: 'Lato';
+      src: url('../fonts/LatoLatin-Bold.svg') format('svg');
+      font-style: normal;
+      font-weight: 500;
+      text-rendering: optimizeLegibility;
+  }
+}
+
+
+/*
+ * Mixins
+ */
+
+// Vertically center any object within its container. Works in IE9 and up.
+// @include vertical-center;
+@mixin vertical-center {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+@mixin button{
+		border-radius: 4px;
+		border: 1px solid darken($blue, 10%);
+		font-weight: 600;
+		padding: em(20) em(15);
+		font-size: em(12);
+		background: $blue;
+		color: $white;
+		text-transform: uppercase;
+		@include transition(background 0.15s ease-in-out);
+
+		&:hover{
+				border-color: $blue;
+				background: lighten($blue, 10%);
+		}
+		&:focus{
+				outline:0;
+		}
+		&:active{
+				margin-top: em(2);
+		}
+}
+
+@mixin button-light{
+		font-weight: 600;
+		background-color: transparent!important;
+		border-radius: 3px;
+		font-size: em(15);
+		text-transform: none;
+		float: right;
+		padding: em(6) em(10) em(4);
+		color: $blue;
+		border: 1px solid rgba(143,149,162,0.30)!important;
+		line-height: 19px;
+		@include transition( all 0.15s ease-in-out);
+
+		&:hover{
+				background-color: transparent!important;
+				border: 1px solid rgba(143,149,162,0.60)!important;
+		}
+		&:focus{
+				outline:0;
+		}
+		&:active{
+				margin-top: em(2);
+		}
+}
+
+@mixin input-underline{
+	input{
+		border: none;
+		box-shadow: none;
+		font-weight: 400;
+		color: $darkgray;
+		padding: em(3) em(18);
+		padding-left: em(5);
+		width: 130px;
+		font-size: em(16);
+		background: url('../img/interface/icons/icons.png') 0 -478px repeat-x;
+		opacity: 0.7;
+
+		&:focus{
+			outline: none;
+			opacity: 1;
+		}
+	}
+	::-webkit-input-placeholder {
+		text-transform: capitalize;
+		color: $darkgray;
+	}
+
+	::-moz-placeholder {
+		text-transform: capitalize;
+		color: $darkgray;
+	}
+
+	:-ms-input-placeholder {
+		text-transform: capitalize;
+		color: $darkgray;
+	}
+}

@@ -1,0 +1,18 @@
+doctype html
+html(lang='en', xmlns='http://www.w3.org/1999/xhtml', itemscope='itemscope', itemtype='http://schema.org/Product', ng-controller="MainController", ng-class="{'windows': global.isWindows}")
+  include ../includes/meta
+  body(class="{{ filemodalOpen && 'filemodal-active' || ''}} {{ headerDominates && 'header-dominates' || ''}} {{ foldSidebar && 'fold-sidebar' || ''}} " , ng-class="'color-' + color" )
+    // wrap whole app so we can animate the whole window
+    section(id="app")
+      header(id="header-container", ng-include="'../views/header.html'", role="navigation")
+      aside(id="sidebar", ng-include="'../views/sidebar.html'")
+      section#content
+          filters
+          block content
+    // share, add, other modal
+    section(ng-controller="ModalController")
+      modal(modal-show="modal.isOpen()", modal-close="modal.close()", modal-item="modal.item", modal-src="modal.src", modal-type="modal.type")
+    // file modal
+    section(ng-controller="FileModalController")
+      filemodal(filemodal-show="filemodal.isOpen()", filemodal-close="filemodal.close()", filemodal-item="filemodal.item")
+    include ../includes/foot

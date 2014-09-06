@@ -1,0 +1,15 @@
+<div class="click-to-add" >
+  <span class="animate-fade-in no-icon" ng-hide="view.editorEnabled" ng-click="enableEditor()">
+    Add new
+  </span>
+  <div class="toggle no-icon"  ng-show="view.loadingResults">
+    Adding...
+  </div>
+  <div class="toggle" ng-show="view.editorEnabled && !view.loadingResults">
+    <span class="{{kind}}-icon icon">
+      <div></div>
+    </span>
+    <input ng-model="view.editableValue" autofocus placeholder="New {{kind}}">
+    <a href="" ng-click="save()">Add</a>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<section ng-controller="StacksController" ng-init="findOne()">
+    <span>Modified {{stack.modified}}</span>
+    <h2>Editing: {{stack.name}}</h2>
+    <div>
+        <a class="btn" href="#/stack{{stack.path}}/edit">
+          rename
+        </a>
+        <a class="btn" ng-click="remove();">
+          remove
+        </a>
+    </div>
+    <h3>Tags</h3>
+    <h4>Current Tags:</h4>
+    <!-- Tags assigned to the item -->
+    <ul id="current-tags">
+        <li class="current-tag" ng-repeat="tag in stack.tags">
+            <h4><a ng-href="#/tags/{{tag.name}}">{{tag.name}}</a></h4>
+            <button ng-click="unassignTag(tag, stack)">Remove</button>
+        </li>
+    </ul>
+    <!-- List of all tags -->
+    <section ng-controller="TagsController" ng-init="findAndCheck()">
+        <h4>All Tags:</h4>
+        <ul id="inline-tags">
+            <li class="inline-tag" ng-repeat="tag in tags">
+                <h4><a ng-href="#/tag/{{tag.name}}">{{tag.name}}</a></h4>
+                <button ng-if="!tag.exists" ng-click="assignTag(tag, stack)">Add</button>
+                <button ng-if="tag.exists" ng-click="unassignTag(tag, stack)">Remove</button>
+            </li>
+        </ul>
+        <p ng-hide="!tags || tags.length">No tags</p>
+    </section>
+
+    <div>
+      <!-- Thumbnail -->
+      <div ng-if="stack.lastFile" class="stack-full">
+        <img ng-init="getThumbnail(stack)" ng-src="{{ stack.thumbnailUrl }}" />
+      </div>
+      <!-- Note Excerpt -->
+      <div ng-if="stack.type === 'note'" class="list-excerpt">
+        <p ng-init="getContent(stack)" class="note-full">{{stack.content}}</p>
+      </div>
+      <!-- TODO: Other Files - download -->
+    </div>
+</section>

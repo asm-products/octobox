@@ -1,0 +1,95 @@
+<section class="sidebar-content">
+    <section ng-controller="SidebarController" id="sidebar-main">
+        <h4 class="color-0" ng-class="{current: isActive('/inbox')}" id="inbox-link" >
+          <a href="#/inbox">
+            <span class="inbox-icon"><div></div></span>
+            Inbox
+          </a>
+        </h4>
+        <h4 class="color-0" ng-class="{current: isActive('/recent')}" id="recent-link">
+          <a href="#/recent">
+            <span class="recent-icon"><div></div></span>
+            Recent Items
+          </a>
+        </h4>
+    </section>
+
+    <section ng-controller="UserController" ng-init="findOne()" ng-class="{'': !isFolded, 'folded': isFolded}">
+        <h3 ng-click="isFolded = !isFolded" ng-init="isFolded = false">Favourites<span></span></h3>
+        <ul id="sidebar-favourites">
+            <li ng-repeat="favourite in user.favourites | orderBy: 'name'" ng-class="{'color-{{favourite.color}}': favourite.kind === 'collection' }">
+                <h4 ng-if="favourite.kind === 'file'" ng-click="filemodal.open(favourite)">
+                    <span class="{{favourite.type}}-icon">
+                      <div></div>
+                    </span>
+                    {{favourite.name}}
+                </h4>
+                <h4 ng-if="favourite.kind === 'link'" ng-click="filemodal.open(favourite)">
+                    <span class="{{favourite.type}}-icon"><div></div></span>
+                    {{favourite.name}}
+                </h4>
+                <h4 ng-if="favourite.kind === 'collection'" ng-click="goToCollection(favourite.path)">
+                    <a href="">
+                      <span class="collection-icon">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="19px" height="16px"
+                           viewBox="0 0 19 16" enable-background="new 0 0 19 16" xml:space="preserve">
+                        <g>
+                          <path class="collection-back" fill="#D9DEEA" stroke="#939CB1" d="M10.502,2.545c-0.554,0-1.315-0.32-1.702-0.716l0.099,0.102
+                            C8.126,1.14,6.601,0.498,5.501,0.498H2.497c-1.103,0-1.998,0.897-1.998,2.006v9.988c0,1.108,0.893,2.006,1.992,2.006h11.016
+                            c1.1,0,1.992-0.898,1.992-2.001V4.546c0-1.105-0.887-2.001-2.006-2.001H10.502z"/>
+                          <path class="collection-front"  fill="#FFFFFF" stroke="#939CB0" d="M6.006,4.498c-1.108,0-1.74,0.877-2.006,2l-1.501,6.001c-0.249,1.142,0.897,2,2.006,2
+                            h9.988c1.108,0,1.672-0.894,2.006-2L18,6.498c0.266-1.107-0.897-2-2.006-2H6.006z"/>
+                        </g>
+                        </svg>
+                      </span>
+                      {{favourite.name}}</a>
+                </h4>
+                <h4 ng-if="favourite.kind === 'stack'" ng-click="goToStack(favourite.path)">
+                    <span class="stack-icon"><div></div></span>
+                    {{favourite.name}}
+                </h4>
+            </li>
+            <p ng-hide="!user.favourites || user.favourites.length" id="no-favourites">No favourites yet. Click the ☆ to add one.</p>
+        </ul>
+    </section>
+
+    <section ng-controller="CollectionsController" ng-init="find()" ng-class="{'': !isFolded, 'folded': isFolded}">
+        <h3 ng-click="isFolded = !isFolded" ng-init="isFolded = false">Collections<span></span></h3>
+        <ul id="sidebar-collections" >
+            <li ng-repeat="collection in collections" ng-class="{current: isActive('/collection/{{collection.name}}')}" class="color-{{collection.color}}" >
+                <h4>
+                  <a ng-href="#/collection/{{collection.name}}">
+                    <span class="collection-icon">
+                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="19px" height="16px"
+                         viewBox="0 0 19 16" enable-background="new 0 0 19 16" xml:space="preserve">
+                      <g>
+                        <path class="collection-back" fill="#D9DEEA" stroke="#939CB1" d="M10.502,2.545c-0.554,0-1.315-0.32-1.702-0.716l0.099,0.102
+                          C8.126,1.14,6.601,0.498,5.501,0.498H2.497c-1.103,0-1.998,0.897-1.998,2.006v9.988c0,1.108,0.893,2.006,1.992,2.006h11.016
+                          c1.1,0,1.992-0.898,1.992-2.001V4.546c0-1.105-0.887-2.001-2.006-2.001H10.502z"/>
+                        <path class="collection-front"  fill="#FFFFFF" stroke="#939CB0" d="M6.006,4.498c-1.108,0-1.74,0.877-2.006,2l-1.501,6.001c-0.249,1.142,0.897,2,2.006,2
+                          h9.988c1.108,0,1.672-0.894,2.006-2L18,6.498c0.266-1.107-0.897-2-2.006-2H6.006z"/>
+                      </g>
+                      </svg>
+                    </span> {{collection.name}}
+                  </a>
+                </h4>
+            </li>
+            <p ng-hide="!collections || collections.length" id="no-collections">No collections yet</p>
+            <a id="add-tag" click-to-add="" callback="create(name, cb)" kind="collection">Add new</a>
+        </ul>
+
+    </section>
+
+    <section id="sidebar-tags-container" ng-controller="TagsController" ng-init="find()" ng-class="{'': !isFolded, 'folded': isFolded}">
+        <h3 ng-click="isFolded = !isFolded" ng-init="isFolded = true">Tags<span></span></h3>
+        <ul id="sidebar-tags">
+            <li class="sidebar-tag color-1" ng-repeat="tag in tags | orderBy: 'name'" ng-class="{current: isActive('/tag/{{tag.name}}')}">
+                <h4><a ng-href="#/tag/{{tag.name}}">
+                  <span class="tag-icon"><div></div></span>
+                  {{tag.name}} <span class="tag-count">{{tag.stacks.length + tag.files.length + tag.links.length}}</span></a></h4>
+            </li>
+            <p ng-hide="!tags || tags.length" id="no-tags">No tags yet</p>
+            <a id="add-tag" click-to-add="" callback="create(name, cb)" kind="tag">Add new</a>
+        </ul>
+    </section>
+</section>

@@ -1,0 +1,53 @@
+/*
+ * Site Name:
+ * Author:
+ *
+ * Stylesheet: Print Stylesheet
+ *
+ * Feel free to customize this. Remember to add things that won't make
+ * sense to print at the bottom. Things like nav, ads, and forms should
+ * be set to display none.
+ */
+
+
+
+* {
+	background: transparent !important;
+	color: black !important;
+	text-shadow: none !important;
+	filter:none !important;
+	-ms-filter: none !important;
+}
+
+a, a:visited {
+	color: #444 !important;
+	text-decoration: underline;
+}
+
+a[href]:after { content: " (" attr(href) ")"; }
+
+abbr[title]:after { content: " (" attr(title) ")"; }
+
+.ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+
+pre, blockquote {
+	border: 1px solid #999;
+	page-break-inside: avoid;
+}
+
+thead {
+	display: table-header-group;
+}
+
+tr, img {
+	page-break-inside: avoid;
+}
+
+img {
+	max-width: 100% !important;
+}
+
+@page { margin: 0.5cm; } p, h2, h3 { orphans: 3; widows: 3; } h2, h3{ page-break-after: avoid; }
+
+/* custom print styles go under here */
+

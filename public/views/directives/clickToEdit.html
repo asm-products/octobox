@@ -1,0 +1,14 @@
+<div class="click-to-edit">
+  <span ng-show="!view.editorEnabled && emptyState !== null && value === null"  ng-click="enableEditor()" class="source-empty">{{emptyState}}</span>
+  <span ng-show="!view.editorEnabled && value !== null" ng-click="enableEditor()" class="value-exists">{{value}}</span>
+  <div ng-show="!view.editorEnabled && sourceLink === true" ng-click="openSourceLink(value)" class="open-source" ></div>
+  <div class="" ng-show="view.loadingResults && value !== null">
+    Renaming...
+  </div>
+  <div class="" ng-show="view.editorEnabled && !view.loadingResults" > <!-- w-mousetrap="{'escape': disableEditor}" -->
+    <form role="form" ng-submit="save()">
+      <input type="text" ng-model="view.editableValue" autofocus size='{{ view.editableValue.length + 4}}'>
+      <button type="submit">Save</button>
+    </form>
+  </div>
+</div>

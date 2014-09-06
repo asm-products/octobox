@@ -1,0 +1,10 @@
+extends ../layouts/promo
+
+block content
+  if message && message.length
+    // button(type="button", dismiss="alert") &times;
+    strong #{message}
+  if req.session.message && req.session.message.length
+    // button(type="button", dismiss="alert") &times;
+    strong #{req.session.message}
+  block auth

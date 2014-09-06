@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="67px" height="19px" viewBox="0 0 67 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path d="M6,0 L0,9.5 L6,19 L67,19 L67,0 L6,0 Z M9.5,12 C10.8807119,12 12,10.8807119 12,9.5 C12,8.11928813 10.8807119,7 9.5,7 C8.11928813,7 7,8.11928813 7,9.5 C7,10.8807119 8.11928813,12 9.5,12 Z" id="path-1"></path>
+    </defs>
+    <g class="tag-background-svg" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <use fill="#99A1B5" fill-rule="evenodd" xlink:href="#path-1"></use>
+    </g>
+</svg>

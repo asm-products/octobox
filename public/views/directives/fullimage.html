@@ -1,0 +1,9 @@
+  <div class="filemodal-image" ng-click="toggleFullView()">
+    <div id="full-view-title" ng-show="fullViewEnabled">
+      {{file.name}}
+    </div>
+    <img ng-src="{{ file.src }}" id="image-preview"/>
+    <p id="preview-notice" class="flip-in" ng-if="zoomEnabled">
+      Show Full Size
+    </p>
+  </div>

@@ -1,0 +1,177 @@
+// Sidebar
+aside{
+  width: em(255);
+  // padding-top: em(80);
+  padding-left: em(25);
+  // padding-bottom: em(80);
+  float: left;
+  position: fixed;
+  top: em(65);
+  bottom: 0;
+  left: 0;
+  @include transition(left 0.175s ease-in-out);
+  background-image: url('../img/sidebar_icons.png');
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-size: 100% auto;
+  z-index: 999; // just below header, but above all content
+
+  .sidebar-content{
+    overflow: auto;
+    height: 100%;
+  }
+  #sidebar-main{
+    margin-top: em(15);
+  }
+  #sidebar-tags-container{
+    margin-bottom: em(100);
+  }
+  ul{
+    padding:0;
+    margin: 0;
+    li{
+      list-style: none;
+    }
+  }
+  h3{
+    font-weight:600;
+    font-size: em(11);
+    color: $midgray;
+    text-transform: uppercase;
+    margin:0;
+    padding-top: em(34);
+    padding-bottom: em(4);
+  }
+  h3 span{
+    opacity: 0.6;
+    width: 10px;
+    height: 6px;
+    display: inline-block;
+    margin-left: em(8);
+    background: url('../img/interface/triangle.png') 0 0 no-repeat;
+    background-size: 100% 100%;
+    vertical-align:middle;
+    @include transition(transform 0.1s ease-in-out);
+  }
+  .folded h3 span{
+    transform:rotate(-90deg) translateX(1px);
+    -ms-transform:rotate(-90deg) translateX(1px);
+    -webkit-transform:rotate(-90deg) translateX(1px);
+  }
+  h3:hover span{
+    opacity: 1;
+  }
+
+  h4{
+    font-size: em(14);
+    color: $darkgray;
+    line-height: em(20);
+    margin: 0;
+    padding: em(6) em(10) em(8) 0;
+    font-weight:400;
+    text-transform: capitalize;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    a{
+      color: $darkgray;
+      text-decoration: none;
+
+      @include transition(all 0.15s ease-in-out);
+    }
+
+  }
+  .tag-count{
+    display: block;
+    float: right;
+    margin-right: em(16);
+    border-radius: 10px;
+    background: $lightgray3;
+    font-size: em(12);
+    line-height: 1.3;
+    font-weight: 600;
+    color: $darkgray;
+    padding: em(6) em(9) em(2);
+  }
+  .collection-icon, .tag-icon{
+    width: em(34);
+    display: block;
+    float: left;
+  }
+  .click-to-add{
+    .collection-icon, .tag-icon{
+      // opacity: 0.5;
+    }
+  }
+  #sidebar-favourites, #sidebar-main{
+    h4{
+
+      cursor: pointer;
+      span{
+        width: em(34);
+        display: block;
+        float: left;
+      }
+    }
+  }
+}
+  // foldable sidebar thingies
+  #sidebar-tags, #sidebar-collections, #sidebar-favourites{
+    overflow: hidden;
+    // @include transform(scaleY(1));
+    // @include transform-origin(top);
+    max-height: 2000px;
+    @include transition(max-height ease-in-out 0.175s);
+  }
+  .folded #sidebar-tags, .folded #sidebar-collections, .folded #sidebar-favourites{
+    // @include transform(scaleY(0));
+    max-height: 0;
+  }
+
+  // empty states styling
+  #no-favourites, #no-tags, #no-collections{
+    font-size: em(13);
+    font-style: italic;
+    color: $darkgray;
+    margin-right: em(80);
+    margin-top: em(5);
+    // margin-left: em(30);
+  }
+
+
+
+  #sidebar-footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: em(260);
+    height: em(80);
+    z-index: 1002;
+    padding: em(35) em(19) 0;
+    background-image: -o-linear-gradient(-179deg, rgba(255,255,255,0.00) 0%, rgba(255,255,255,0.80) 30%, rgba(255,255,255,1));
+    background-image: -moz-linear-gradient(-179deg, rgba(255,255,255,0.00) 0%, rgba(255,255,255,0.80) 30%, rgba(255,255,255,1));
+    background-image: -ms-linear-gradient(-179deg, rgba(255,255,255,0.00) 0%, rgba(255,255,255,0.80) 30%, rgba(255,255,255,1));
+    background-image: linear-gradient(-179deg, rgba(255,255,255,0.00) 0%, rgba(255,255,255,0.80) 30%, rgba(255,255,255,1));
+    @include transition(left 0.175s ease-in-out);
+    // direct descendants
+    &> *{
+      width: em(74);
+      height: em(24);
+      float: left;
+      padding: 0 em(25);
+      margin: 0;
+      cursor: pointer;
+    }
+    #sidebar-sync{
+      padding-top: em(5);
+      span{
+        padding: 0;
+      }
+      .loading{
+        @include animation(pulse 0.75s ease-in-out infinite);
+      }
+    }
+    img{
+      border-radius: 12px;
+    }
+  }

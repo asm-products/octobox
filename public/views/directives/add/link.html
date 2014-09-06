@@ -1,0 +1,19 @@
+<div class="modal-title">
+  <h2>Add New Link</h2>
+  <button ng-click="$parent._modalClose()">×</button>
+</div>
+<div ng-controller="LinkController" class="create-link add">
+  <form role="form" ng-submit="create($parent._modalItem())" ng-show="!loading" ng-init="loading = false">
+    <input type="text" ng-model="url" id="link-url" placeholder="http://" autofocus required>
+    <button type="submit">Add</button>
+  </form>
+  <div class="add-link-intro modal-form" ng-show="!loading" >
+    <!-- <span class="add-link-icon">octobot</span> -->
+    <p>
+      You can store any website link in Octobox. Once added, you can assign tags to it and mark it as your Favourite to keep it handy.
+    </p>
+  </div>
+  <div ng-show="loading" class="loading">
+    Adding link &hellip;
+  </div>
+</div>

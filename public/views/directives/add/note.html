@@ -1,0 +1,19 @@
+<div class="modal-title">
+  <h2>Add New Note</h2>
+  <button ng-click="$parent._modalClose()">×</button>
+</div>
+<div ng-controller="FileController" class="create-note add">
+  <form role="form" ng-submit="createNote($parent._modalItem())" ng-show="!loading" ng-init="loading = false">
+    <input type="text" ng-model="name" id="note-name" placeholder="Note Name" value="" autofocus required>
+    <button type="submit">Add</button>
+  </form>
+  <div class="add-note-intro modal-form" ng-show="!loading" >
+    <!-- <span class="add-note-icon">octobot</span> -->
+    <p>
+      Use Markdown to format your notes - see <a href="http://daringfireball.net/projects/markdown/" target="_blank">formatting guidelines</a>.
+    </p>
+  </div>
+  <div ng-show="loading" class="loading">
+    Creating note &hellip;
+  </div>
+</div>

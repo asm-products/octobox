@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="18px" height="17px"
+	 viewBox="0 -1 18 17" enable-background="new 0 -1 18 17" xml:space="preserve">
+<g id="Icons" sketch:type="MSPage">
+			<path id="Path-7" sketch:type="MSShapeGroup" fill="none" stroke="#7B859C" d="M0.192,8.961C0.086,8.706,0.226,8.5,0.496,8.5
+				h15.007c0.274,0,0.413,0.2,0.304,0.461l-2.116,5.078c-0.106,0.255-0.422,0.461-0.693,0.461H3.001c-0.277,0-0.584-0.2-0.693-0.461
+				L0.192,8.961z M14.5,7l-1.863-6.021c-0.076-0.266-0.36-0.481-0.647-0.481H4.01c-0.281,0-0.572,0.217-0.647,0.481L1.5,7"/>
+			<path id="Line-2" sketch:type="MSShapeGroup" fill="none" stroke="#7B859C" stroke-linecap="square" d="M5,4.5h6 M5,2.5h6
+				 M6,10.542h4 M5,6.5h6"/>
+</g>
+</svg>

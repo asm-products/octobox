@@ -1,0 +1,32 @@
+<div class="modal-title">
+  <h2 ng-if="!$parent._modalItem().kind">Delete this {{_modalItem().type}}</h2>
+  <h2 ng-if="$parent._modalItem().kind">Delete this {{_modalItem().kind}}</h2>
+  <button ng-click="$parent._modalClose()">×</button>
+</div>
+<div ng-controller="DeleteController" class="delete-content" ng-init="initialize($parent._modalItem())" >
+  <div class="loading" ng-show="deleting">
+    Deleting &hellip;
+  </div>
+  <section class="delete-item" ng-show="!deleting">
+    <div class="thumbnail-containter" ng-show="item.type !== 'note' && item.type !== 'link'" >
+      <img ng-src="{{item.thumbnailUrl}}" imageloaded loadedclass="loaded"/>
+    </div>
+    <div class="note-icon" ng-show="item.type === 'note'">
+      <div></div>
+    </div>
+    <div class="link-icon" ng-show="item.type === 'link'">
+      <div></div>
+    </div>
+    <h2>{{item.name}}</h2>
+  </section>
+  <div class="modal-divider" ng-show="!deleting"></div>
+  <p ng-show="!deleting">
+    This {{_modalItem().type || _modalItem().kind}} will be removed <strong>permanently</strong> from Octobox.
+    <span ng-show="item.type !== 'link' && item.type !== 'tag'">You might be able to recover it through Dropbox.</span>
+    <span ng-show="item.type === 'tag'">Items will not be removed.</span>
+  </p>
+  <div class="modal-form" ng-show="!deleting">
+    <button name="delete" ng-click="deleteItem(item, item.type)" class="button-delete">Delete</button>
+    <button name="cancel" ng-click="$parent._modalClose()" class="button-close">Cancel</button>
+  </div>
+</div>

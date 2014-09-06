@@ -1,0 +1,646 @@
+// General Modal Styles
+
+.filemodal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+  // background: rgba(255,255,255,0.34);
+  background: $white;
+  @include transition(0.2s all ease-in-out);
+  -webkit-backface-visibility: hidden;
+
+  &:hover{
+    background: rgba(255,255,255,0.93);
+    cursor: pointer;
+  }
+}
+.filemodal-container{
+  z-index: 2001;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events:none;
+  bottom: 0;
+  -webkit-backface-visibility: hidden;
+}
+  .filemodal-header{
+    position: fixed;
+    width:100%;
+    z-index: 2005;
+    height: em(45);
+    background: $white;
+    border-bottom: 1px $lightgray2 solid;
+  }
+
+  .back-arrow{
+    margin: em(10) 0 0 em(15);
+    pointer-events: all;
+    display: block;
+    cursor: pointer;
+    z-index: 2003;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+
+    *{
+      cursor: pointer;
+    }
+
+    svg{
+      vertical-align: middle;
+    }
+
+    span{
+      font-weight: 300;
+      color: $midgray;
+      font-size: em(14);
+      padding-left: em(6);
+      line-height: 1.7;
+      opacity: 0;
+      @include transition(opacity 0.15s ease-in-out);
+    }
+    .back-svg{
+      fill: $lightgray;
+      @include transition(fill 0.15s ease-in-out);
+    }
+    &:hover{
+      span{
+        opacity: 1;
+      }
+      .back-svg{
+        fill: #939CB0;
+      }
+    }
+
+    .back-svg{
+      // margin-top: em(15);
+      fill-opacity: 0.4;
+      stroke: #939CB0;
+    }
+  }
+  .filemodal-content{
+    top: 0;
+    bottom: 0;
+    left: em(50);
+    right: em(50);
+    position: fixed;
+    background: $white;
+    padding: 0 2em;
+    // -moz-box-shadow:    0px 0px 9px 0px rgba(0,0,0,0.09);
+    // box-shadow:         0px 0px 9px 0px rgba(0,0,0,0.09);
+    pointer-events: all;
+
+    > section{
+      // position: relative;
+    }
+    h2{
+      font-weight: 400;
+      font-size: em(18);
+      color: #556471;
+      line-height: 1.33;
+      margin: 0;
+      padding: em(10) 0 0 em(12);
+      text-transform: capitalize;
+      display: block;
+      white-space: nowrap;
+
+      .value-exists{
+        line-height: 1.4;
+      }
+      > div{
+        float: left;
+        margin-right: em(6);
+      }
+      > div:first-child{
+        margin-right: em(12);
+      }
+    }
+    .file-meta{
+
+      font-style: italic;
+      font-size: em(14);
+      padding: em(3) 0 0 0;
+      margin: 0;
+      float: left;
+      width: 40%;
+      // top: em(17);
+      // right: 205px;
+      // position: absolute;
+      .click-to-edit{
+        vertical-align: top;
+        max-width: 80%!important;
+        overflow: visible!important;
+
+      }
+      > span{
+        display: block;
+        float: left;
+        width: 100%;
+        color: $midgray;
+      }
+      .open-source{
+        float: left;
+        margin-left: em(10);
+        width: em(50);
+        min-width: em(50);
+        height: em(20);
+        background: url('../img/interface/icons/icons.png') -150px -48px repeat-x;
+        opacity: 0.5;
+        @include transition(opacity 0.2s ease-in-out);
+        &:hover{
+          opacity: 1;
+        }
+      }
+      span.source-empty, span.value-exists{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        float: left;
+        max-width: em(200);
+      }
+      span.source-empty{
+        color: lighten($midgray, 15%);
+        background: url('../img/interface/icons/icons.png') 0 -481px repeat-x;
+        @include transition(color 0.2s ease-in-out);
+
+        &:hover{
+          color: $midgray;
+        }
+      }
+      span.value-exists{
+        &:hover{
+          background: url('../img/interface/icons/icons.png') 0 -481px repeat-x;
+        }
+      }
+      input{
+        min-width: em(120);
+        background: url('../img/interface/icons/icons.png') 0 -481px repeat-x;
+      }
+      button{
+        margin-top: em(-5)!important;
+        font-style: normal;
+        font-size: 1em;
+      }
+
+      span > span {
+        // text-decoration: underline;
+      }
+    }
+    .file-top{
+      height: em(45);
+      border-bottom: 1px $lightgray2 solid;
+      @include clearfix;
+      position: relative;
+
+      .click-to-edit {
+        max-width: 45%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow-x: hidden;
+        overflow-y: auto;
+        .value-exists {
+        }
+        input{
+          max-width: em(250);
+        }
+      }
+    }
+
+    .file-details{
+      z-index: 11;
+      position: relative;
+    }
+    .file-nav{
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: em(92);
+      // border-left: 1px $lightgray2 solid;
+      padding-left: em(10);
+
+      section{
+        width: em(40);
+        height: em(40);
+        cursor: pointer;
+        float: left;
+        &:first-child, .dropdown-trigger{
+          padding: em(10);
+        }
+      }
+      .dropdown{
+        right: -16px;
+        left: auto;
+        top: 25px;
+
+        &:after {
+          content: "";
+          z-index: 100001;
+          position: absolute;
+          top: -16px;
+          bottom: auto;
+          left: 130px;
+          width: 31px;
+          height: 22px;
+          -webkit-transform: rotate(0deg);
+          -moz-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+          background: url('../img/interface/popup-marker.svg');
+        }
+      }
+    }
+    .file-size{
+      float: right;
+      font-size: em(13);
+      color: $darkgray;
+      margin: em(15) em(10) 0 0;
+
+      div{
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: em(3);
+      }
+      span{
+        font-weight: 700;
+      }
+    }
+    .file-content{
+      // display: none;
+      z-index: 8;
+      // width: 100%;
+      position: absolute;
+      top: em(100);
+      bottom: em(15);
+      left: em(32);
+      right: em(32);
+      background: url('../img/interface/loader.gif') center no-repeat;
+    }
+    .file-note{
+      z-index: 8;
+      position: absolute;
+      top: em(100);
+      bottom: em(15);
+      left: em(32);
+      right: em(32);
+    }
+    #edit-tags{
+      z-index: 10;
+      position: absolute;
+      top: em(105);
+      left: 0;
+      width: em(360);
+      background: $white;
+      border-radius: 4px;
+      -moz-box-shadow:    0px 0px 9px 0px rgba(0,0,0,0.09), 0px 0px 2px 0px rgba(0,0,0,0.36);
+      box-shadow:         0px 0px 9px 0px rgba(0,0,0,0.09), 0px 0px 2px 0px rgba(0,0,0,0.36);
+
+      &:after {
+        content: "";
+        z-index: 100001;
+        position: absolute;
+        top: -16px;
+        left: 40px;
+        width: 31px;
+        height: 22px;
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+        background: url('../img/interface/popup-marker.svg');
+      }
+
+      ul{
+        margin: em(20);
+        padding: 0;
+        @include clearfix;
+      }
+      li{
+        margin-bottom: em(8);
+        span{
+          // @include transition(all 0.15s ease-in-out);
+        }
+      }
+      p{
+        margin-top: 0;
+        margin-bottom: em(8);
+      }
+      .modal-form{
+        background: $lightgray;
+        border-top: $lightgray2 1px solid;
+        padding-bottom: em(20);
+        border-radius: 0 0 4px 4px;
+      }
+      form {
+        margin: em(15) em(25) 0;
+
+        button{
+          @include button-light;
+          margin-top: em(4);
+          &:active{
+            margin-top: em(6);
+          }
+        }
+        input{
+          border: none;
+          box-shadow: none;
+          width: 75%;
+          font-weight:400;
+          color: $darkgray;
+          padding: em(12) em(18);
+          padding-left: em(5);
+          font-size: em(15);
+          font-style: italic;
+          background: url('../img/interface/icons/icons.png') 0 -468px repeat-x;
+          opacity: 0.7;
+          @include transition (0.15s all cubic-bezier(0.570, 0.065, 0.430, 1.505));
+
+          &:focus{
+            outline: none;
+            opacity: 1;
+          }
+        }
+      }
+    }
+    #current-tags-container{
+      // margin: 0 em(120) 0 0;
+      // float: left;
+      position: absolute;
+      left: 0; right: em(60); top: 0;
+    }
+    #current-tags{
+      margin: 0 em(105) 0 0;
+      padding: em(10) 0;
+      min-width: 60%;
+      height: em(35);
+      overflow: hidden;
+      background: $white;
+      // position: relative;
+      float: left;
+
+      *{
+        cursor: pointer;
+      }
+      li{
+        margin-top: em(2);
+        margin-bottom: em(50);
+      }
+      cursor: pointer;
+
+      > p{
+        opacity: 0.6;
+        color: $midgray2;
+        line-height: em(31);
+        margin-top: 0;
+        display: block;
+        float: left;
+        word-wrap: none;
+        position: absolute;
+        top: em(10);
+        left: em(55);
+      }
+      > p.floating{
+        position:relative;
+        top: auto;
+        left: auto;
+      }
+    }
+    .tag-icon{
+      margin: em(12) em(12) 0 em(12);
+      float: left;
+      display: block;
+      cursor: pointer;
+
+      img{
+        width: 20px;
+        height: 20px;
+        vertical-align: sub;
+      }
+    }
+
+
+    #edit-tags, #current-tags{
+      p{
+        font-style: italic;
+        font-size: em(14);
+        color: $midgray;
+      }
+      li{
+        cursor: pointer;
+        list-style: none;
+        display: inline-block;
+        margin-right: em(8);
+        float: left;
+
+        &.exists{
+          span{
+            background-color: lighten(#99A1B2, 10%);
+          }
+        }
+
+        span{
+          // height: em(19);
+          padding: em(4) em(12) em(3) em(25);
+          font-size: em(11);
+          font-weight: 600;
+          line-height: 1.5;
+          text-transform: uppercase;
+          color: $white;
+          border-radius: 2px;
+          display: block;
+          background-image: url('../img/interface/tag-mask.png');
+          background-position: left top;
+          background-size: auto 100%;
+          background-repeat: no-repeat;
+        }
+      }
+    }
+  }
+  // Link only
+  #link-container{
+    .file-top{
+      h2{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 700px;
+        width: 90%;
+      }
+    }
+    .file-nav{
+      width: em(40);
+      section{
+        padding: 5px;
+      }
+    }
+    .file-content{
+      left: 10%;
+      right: 10%;
+      bottom: em(220);
+      top: em(120);
+      border-radius: 4px;
+      background: $white;
+      @include transition(background 0.25s ease-in-out);
+
+      &:hover{
+        cursor:pointer;
+        background: $lightgray;
+      }
+      section{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 85%;
+        -webkit-transform: translateY(-50%) translateX(-50%);
+        -ms-transform: translateY(-50%) translateX(-50%);
+        transform: translateY(-50%) translateX(-50%);
+        text-align: center;
+
+        > span{
+          font-style: italic;
+          font-size: em(14);
+
+          > span{
+            color: $midgray;
+          }
+        }
+        p{
+          font-weight: 600;
+          font-size: em(14);
+          line-height: 1.45;
+          color: $midgray2;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          margin: em(5) 0 em(3);
+          span{
+            color: $darkergray;
+          }
+        }
+        img{
+          width: em(24);
+          height: em(24);
+          border-radius: 3px;
+          margin-right: em(10);
+          vertical-align: bottom;
+        }
+        h3{
+          font-weight: 500;
+          font-size: em(20);
+          color: #556471;
+          line-height: 1.5;
+          margin: 0;
+        }
+      }
+    }
+  }
+  .divider{
+    height: 1px;
+    margin: 15px 0;
+    background: $lightgray4;
+  }
+
+  // Image
+  .filemodal-image{
+    text-align: center;
+
+    img{
+      max-width: 100%;
+      max-height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translateY(-50%) translateX(-50%);
+      -ms-transform: translateY(-50%) translateX(-50%);
+      transform: translateY(-50%) translateX(-50%);
+      border-radius: 3px;
+      opacity:0;
+      @include transition(opacity 0.2s ease);
+
+      &.loaded{
+        opacity: 1;
+      }
+    }
+    p{
+      opacity: 0;
+      position: absolute;
+      top: 50.5%;
+      left: 50.5%;
+      -webkit-transform: translateY(-51%) translateX(-51%);
+      -ms-transform: translateY(-51%) translateX(-51%);
+      transform: translateY(-51%) translateX(-50%);
+      font-size: em(13);
+      color: $darkergray;
+      padding: em(8) em(15);
+      font-weight: 600;
+      border-radius: 3px;
+      background: rgba(255,255,255, 0.97);
+    }
+  }
+  // image hover state for when full view is available
+  .file-content.zoom .filemodal-image:hover{
+    cursor: -webkit-zoom-in;
+    cursor: -moz-zoom-in;
+    cursor: zoom-in;
+    img{
+      -moz-box-shadow:    0px 0px 8px 0px rgba(0,0,0,0.10), 0px 0px 2px 0px rgba(60,66,86,0.40);
+      box-shadow:         0px 0px 8px 0px rgba(0,0,0,0.10), 0px 0px 2px 0px rgba(60,66,86,0.40);
+    }
+    p{
+      opacity: 1;
+    }
+  }
+  // full view
+  .file-content.zoom.full-view{
+    .filemodal-image:hover{
+      cursor: -webkit-zoom-out;
+      cursor: -moz-zoom-out;
+      cursor: zoom-out;
+      p{
+        opacity: 0!important;
+      }
+    }
+    img:hover{
+
+    }
+    // display: none;
+    z-index: 15;
+    // width: 100%;
+    position: absolute;
+    overflow-y:scroll;
+    top: 0;
+    bottom: 0;
+    left: em(-32);
+    right: em(-32);
+    padding: 0 em(10) em(10);
+    background: $white;
+
+    img{
+      position: relative;
+      max-height: none;
+      top: auto;
+      left: auto;
+      @include transform(none);
+    }
+    #full-view-title{
+      margin: em(12) 0;
+      text-transform: capitalize;
+      color: $midgray;
+    }
+  }
+
+// Disable scrollbar on body if filemodal is open
+.filemodal-active{
+  overflow:hidden;
+}
+
+// Fix safari bug with filemodal title width
+.edit-title{
+  min-width: 2em;
+}

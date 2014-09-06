@@ -1,0 +1,129 @@
+@include keyframes(fadeIn) { from { opacity:0; } to { opacity:1; } }
+@include keyframes(pulse) {
+  0% {
+    @include transform(scale(1));
+  }
+
+  25% {
+    @include transform(scale(1.1));
+    border-color: lighten(#5585ff, 20%)
+  }
+
+  75% {
+    @include transform(scale(0.9));
+    border-color: lighten(#5585ff, 0%)
+  }
+
+  100% {
+    @include transform(scale(1));
+  }
+}
+
+.file-save button .active {
+    opacity:0;  /* make things invisible upon start */
+    -webkit-animation:fadeIn ease-in-out 1;
+    -moz-animation:fadeIn ease-in-out 1;
+    animation:fadeIn ease-in-out 1;
+
+    -webkit-animation-fill-mode:forwards;
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+
+    -webkit-animation-duration:0.15s;
+    -moz-animation-duration:0.15s;
+    animation-duration:0.15s;
+
+    -webkit-animation-delay: 0.125s;
+    -moz-animation-delay: 0.125s;
+    animation-delay: 0.125s;
+}
+
+// save button
+.file-save{
+  position: absolute;
+  top: em(10);
+  right: 0;
+  width: em(80);
+
+  button{
+    // width: em(70);
+    position:relative;
+    // overflow:hidden;
+    background-color:transparent;
+    outline:none;
+    width: em(70);
+    height: em(30);
+    padding: em(2) 0;
+    color: lighten(#5585ff, 10%);
+    margin-top: 0;
+    cursor: pointer;
+    text-align:center;
+    border-radius: 6px;
+    border:2px solid lighten(#5585ff, 10%);
+    text-transform:lowercase;
+    @include transition(all 0.1s ease-in-out);
+
+    &:hover {
+      border:2px solid darken(#5585ff, 5%);
+      // color: darken(#5585ff, 30%);
+    }
+    &:active {
+      @include transform(scale(.9,.9));
+    }
+    &.inactive {
+      border-color: $midgray;
+    }
+    &.active, &.saved{
+      margin-top: 0;
+      margin-left: 0;
+    }
+    .active, .saving, .saved{
+      position: absolute;
+      top: 1px;
+      left: 50%;
+      @include transform(translateX(-50%));
+
+    }
+    .active{
+      color:#5585ff;
+    }
+
+    .saving, .saved{
+      @include transition(all 0.1s ease-in-out);
+      visibility: hidden;
+    }
+    .saved{
+      color:$green;
+    }
+    &.saving{
+      width:em(32);
+      margin-left:em(38/2);
+      border-radius: 16px;
+      @include animation(pulse 1.0s ease-in-out infinite);
+
+      &:hover{
+        border-color: lighten(#5585ff, 10%);
+      }
+      .saving {
+        visibility: visible;
+      }
+      .active, .saved{
+        visibility: hidden;
+      }
+    }
+    &.saved {
+      width: em(70);
+      border-radius: 6px;
+      border-color: $green;
+      &:hover{
+        border-color: $green;
+      }
+      .active, .saving{
+        visibility: hidden;
+      }
+      .saved{
+        visibility: visible;
+      }
+    }
+  }
+}

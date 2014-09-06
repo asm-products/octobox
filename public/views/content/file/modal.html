@@ -1,0 +1,46 @@
+<section ng-controller="FileController" ng-init="findOneModal(_modalPath())" >
+		<h2>
+			<button ng-show="!file.isFavourite" ng-click='addFavourite(file)'>Add Fav</button>
+			<button ng-show="file.isFavourite" ng-click='removeFavourite(file)'>Remove Fav</button>
+			<span click-to-edit="file.name" callback="renameItem(newName, cb)" kind="'file'">{{file.name}}</span>
+		</h2>
+		<div class="file-meta">
+			<span ng-if="file.type === 'note'">Last modified: <span am-time-ago="file.modified"></span></span>
+			<span ng-if="file.type === 'image'">via <span am-time-ago="file.modified"></span></span>
+		</div>
+		<div class="file-details">
+			Tags:
+			<!-- Tags assigned to the item -->
+			<ul id="current-tags">
+					<li class="current-tag" ng-repeat="tag in file.tags">
+							<h4><a ng-href="#/tags/{{tag.name}}">{{tag.name}}</a></h4>
+							<button ng-click="unassignTag(tag, file)">Remove</button>
+					</li>
+			</ul>
+			<!-- List of all tags -->
+			<section ng-controller="TagsController" id="edit-tags" ng-init="findAndCheck()">
+					<h4>All Tags:</h4>
+					<ul id="inline-tags">
+							<li class="inline-tag" ng-repeat="tag in tags">
+									<h4><a ng-href="#/tag/{{tag.name}}">{{tag.name}}</a></h4>
+									<button ng-if="!tag.exists" ng-click="assignTag(tag, file)">Add</button>
+									<button ng-if="tag.exists" ng-click="unassignTag(tag, file)">Remove</button>
+							</li>
+					</ul>
+					<!-- TODO: full tag list hidden/unloaded by default. load on click (and refresh tag.exists) -->
+					<p ng-hide="!tags || tags.length">No tags</p>
+			</section>
+		</div>
+		<div class="file-content">
+			<!-- Thumbnail -->
+			<div ng-if="file.hasThumbnail" class="file-image">
+				<span class="helper"></span>
+				<img ng-init="getImage(file)" ng-src="{{ file.src }}" />
+			</div>
+			<!-- Note Excerpt -->
+			<div ng-if="file.type === 'note'" class="file-note">
+				<p ng-init="getContent(file)" class="note-full">{{file.content}}</p>
+			</div>
+			<!-- TODO: Other Files - download -->
+		</div>
+</section>

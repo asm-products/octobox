@@ -1,0 +1,697 @@
+// General Modal Styles
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2003;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+  background: rgba(0,0,0,0.1);
+}
+.modal-container{
+  z-index: 2004;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events:none;
+  bottom: 0;
+  -webkit-transform: translate3d(0,0,0);
+
+  p{
+    padding: em(5) em(25) em(10);
+    font-size: em(14);
+    font-style: italic;
+    color: darken($midgray, 5%);
+    &.small{
+      font-size: em(12);
+    }
+  }
+}
+
+  .modal-dialog{
+    position: fixed;
+    width: em(400);
+    max-width:100%;
+    left: 50.55%;
+    top: 50.55%;
+    -webkit-transform: translateY(-51%) translateX(-51%);
+    -ms-transform: translateY(-51%) translateX(-51%);
+    transform: translateY(-51%) translateX(-51%);
+    background: $white;
+    border-radius: 4px;
+    -moz-box-shadow:    0px 0px 9px 0px rgba(0,0,0,0.09), 0px 0px 2px 0px rgba(0,0,0,0.36);
+    box-shadow:         0px 0px 9px 0px rgba(0,0,0,0.09), 0px 0px 2px 0px rgba(0,0,0,0.36);
+    pointer-events: all;
+
+    .modal-content{
+      position:relative;
+
+    }
+    .modal-divider{
+      height: 1px;
+      margin: 15px 25px;
+      background: $lightgray4;
+    }
+    .modal-title{
+      background: $lightgray;
+      border-bottom: 1px solid $lightgray2;
+      padding: em(10) 0;
+      border-radius: 4px 4px 0 0;
+
+      button{
+        position: absolute;
+        top: em(10);
+        right: em(10);
+        background: url('../img/interface/icons/icons.png') 4px -395px no-repeat;
+        width: em(24);
+        height: em(24);
+        border: none;
+        outline: none;
+        opacity: 0.8;
+        // @include transition (0.15s all ease-in-out);
+        @include hide-text;
+        &:hover{
+          opacity: 1;
+        }
+      }
+    }
+    h2{
+      font-size: em(17);
+      font-weight:400;
+      color: $darkgray;
+      text-align:center;
+      margin: 0;
+      text-transform: capitalize;
+
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    // Add Stack Modal
+    form{
+      margin: em(25);
+
+      input{
+        font-weight:400;
+        font-size: em(17);
+        color: $darkgray;
+        width: 82%;
+
+        padding: em(12) em(18) em(11);
+        border-radius: 4px;
+        background: $white;
+        border: 1px solid #E4E7EC;
+        -moz-box-shadow:    inset 1px 1px 7px 0px rgba(0,0,0,0.11);
+        box-shadow:         inset 1px 1px 7px 0px rgba(0,0,0,0.11);
+
+        &:focus{
+          outline: 0;
+          border-color: #C3C3C3;
+        }
+      }
+      button{
+        // font-weight: 600;
+        // text-transform: uppercase;
+        // font-size: em(12);
+        // color: $white;
+        // text-shadow: 2px 2px 0px #4379B7;
+        width: 16%;
+        padding: em(20) 0;
+        // border: none;
+        // border-radius: 4px;
+        // background-image: -o-linear-gradient(-89deg, #6BAFFF 0%, #4A90E2 100%);
+        // background-image: -moz-linear-gradient(-89deg, #6BAFFF 0%, #4A90E2 100%);
+        // background-image: -ms-linear-gradient(-89deg, #6BAFFF 0%, #4A90E2 100%);
+        // background-image: linear-gradient(-179deg, #6BAFFF 0%, #4A90E2 100%);
+        // -moz-box-shadow:    0px 2px 0px 0px #4379B7;
+        // box-shadow:         0px 2px 0px 0px #4379B7;
+
+        float: right;
+        color: $white;
+        border: none;
+        margin: 0;
+        @include button;
+
+      }
+    }
+  }
+  .share-social{
+    display: block;
+    @include clearfix;
+    margin: 0 auto em(25);
+    width: em(265);
+    min-height: em(195);
+
+    h3{
+      font-weight: 400;
+      font-size: em(14);
+      color: $darkgray;
+      text-align:center;
+      margin: em(20) 0 em(8);
+    }
+  }
+  .share-social-input, .share-social-tabs{
+    display: block;
+    @include clearfix;
+    margin: 0 auto;
+  }
+  .share-social-input{
+    border-radius: 0 0 4px 4px;
+    border: 1px solid $lightgray2;
+    margin-bottom: em(5);
+    -moz-box-shadow:    inset 1px 1px 7px 0px rgba(0,0,0,0.11);
+    box-shadow:         inset 1px 1px 7px 0px rgba(0,0,0,0.11);
+    padding: em(15) em(15) em(8);
+
+    textarea{
+      margin: 0;
+      padding: 0;
+      font-family: $mono;
+      line-height: 1.5;
+      font-size: em(13);
+      border: none;
+      overflow: auto;
+      outline: none;
+      width: 100%;
+      min-height: em(90);
+      max-height: em(250);
+      resize:vertical;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      color: $darkgray;
+    }
+    ::-webkit-resizer {
+      display:none;
+    }
+  }
+  .share-social-tabs{
+    span{
+      float: left;
+      width: 50%;
+      display: block;
+      text-align: center;
+      font-weight: 500;
+      font-size: em(13);
+      color: $midgray;
+      height: em(32);
+      line-height: 1.375;
+      padding-top: em(6);
+      cursor: pointer;
+
+      &.active, &:hover{
+        background:#FBFCFE;
+      }
+
+      &:first-child{
+        border-radius: 4px 0 0 0;
+        border-top: 1px solid $lightgray2;
+        border-left: 1px solid $lightgray2;
+        border-right: 1px solid $lightgray2;
+
+        &.active{
+          color: $twitter;
+        }
+      }
+      &:last-child{
+        border-radius: 0 4px 0 0;
+        border-top: 1px solid $lightgray2;
+        border-right: 1px solid $lightgray2;
+
+        &.active{
+          color: $facebook;
+        }
+      }
+    }
+  }
+  // narrow modal style - used in share
+  .modal-dialog.narrow{
+    width: em(350);
+    left: 50.5%;
+    top: 50.5%;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    -ms-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+  }
+  // Share
+  .share-content{
+    // min-height: em(352);
+    // height: em(372);
+    form{
+      margin-top: em(14);
+      height: em(36);
+      max-height: em(36);
+      overflow: hidden;
+      label{
+        width: 10%;
+        margin-right: 3%;
+      }
+      input{
+        width: 68%;
+        padding: em(12) em(14) em(9);
+        font-family: $mono;
+        font-size: em(14);
+        line-height: 1;
+      }
+      button{
+        padding: em(13) 0 em(12);
+
+        width: 19%;
+      }
+    }
+  }
+  .share-item, .delete-item, .sel-file{
+    margin: em(20) em(25) em(14);
+    height: em(60);
+
+    .thumbnail-containter{
+      float: left;
+      margin-right: em(15);
+      width: em(60);
+      height: em(60);
+      border-radius: 3px;
+      background: url('../img/interface/empty-thumbnail.jpg');
+      background-size: cover;
+      -moz-box-shadow:    0px 0px 8px 0px rgba(0,0,0,0.10), 0px 0px 1px 0px rgba(60,66,86,0.40);
+      box-shadow:         0px 0px 8px 0px rgba(0,0,0,0.10), 0px 0px 1px 0px rgba(60,66,86,0.40);
+      overflow: hidden;
+      position: relative;
+      &.note-icon{
+        div{
+          margin-top: em(22);
+          margin-left: em(21);
+        }
+      }
+      img{
+        width: 160%;
+        min-height: 100%;
+        border-radius: 3px;
+        margin-left: em(-18);
+        opacity: 0;
+        border: 0; // remove unloaded styles
+        outline:0;
+        @include transition(opacity 0.2s ease);
+
+        &.loaded{
+          opacity: 1;
+        }
+      }
+    }
+    h2{
+      text-align: left;
+      font-size: em(16);
+      line-height: 1.375;
+      padding: em(6) 0 em(1);
+    }
+    span{
+      font-style: italic;
+      font-size: em(14);
+      color: $midgray;
+      line-height: 1.375;
+      margin-right: em(6);
+    }
+  }
+  .share-social-buttons{
+    float: right;
+
+    button{
+      border-radius: 4px;
+      background: #FFFFFF;
+      border: 1px solid $lightgray2;
+      font-weight: 600;
+      padding: em(7) em(12) em(6);
+      font-size: em(12);
+      color: #BEC3D4;
+      text-transform: uppercase;
+      margin-left: em(6);
+      margin-top: em(3);
+    }
+    button:last-child{
+      background: #F7F8F9;
+      color: #34AAE9;
+    }
+  }
+  // Image
+  .file-image{
+    // display: none;
+    width: 100%;
+    position: absolute;
+    top: em(120);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+
+    img{
+      max-width: 100%;
+      max-height: 100%;
+      vertical-align: middle;
+    }
+  }
+  .modal-form{
+    background: $lightgray;
+    border-top: $lightgray2 1px solid;
+    padding-bottom: em(20);
+    border-radius: 0 0 4px 4px;
+    a{
+      text-decoration: none;
+      font-weight: 600;
+      color: $midgray;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // Delete modal
+  .delete-content{
+
+    .delete-item{
+      height: auto;
+
+      > div{
+        float: left;
+        margin-right: em(10);
+        margin-top: em(8);
+      }
+      .thumbnail-containter{
+        margin-top: em(0);
+        width: em(32);
+        height: em(32);
+      }
+    }
+    .modal-form{
+      min-height: em(70);
+    }
+    .button-delete{
+      @include button;
+      float: right;
+      width: 22%;
+      background-color: $red;
+      border-color: darken($red, 10%);
+
+      padding: em(15) 0;
+      margin: em(15) em(25) em(20);
+      &:hover{
+          border-color: $red;
+          background: lighten($red, 10%);
+      }
+      &:active{
+        margin-top: em(17);
+      }
+    }
+    .button-close{
+      float: right;
+      border-radius: 4px;
+      background: #FFFFFF;
+      border: 1px solid $lightgray2;
+      font-weight: 600;
+      padding: em(15) em(12) em(15);
+      font-size: em(12);
+      color: #BEC3D4;
+      text-transform: uppercase;
+      margin: em(15) 0 em(20);
+    }
+  }
+
+  // Move modal
+  .move-content{
+    form {
+      margin: em(20) em(25) 0;
+
+      button{
+        @include button-light;
+        padding: em(7) em(10) em(5);
+        width: 19%;
+        font-size: em(14);
+        margin-top: em(4);
+        &:active{
+          margin-top: em(6);
+        }
+        &:hover{
+        }
+      }
+      input{
+        border: none;
+        box-shadow: none;
+        width: 72%;
+        margin-left: em(10);
+        padding-left: em(5);
+        font-size: em(14);
+        font-style: italic;
+        background: url('../img/interface/icons/icons.png') 0 -468px repeat-x;
+        opacity: 0.7;
+        @include transition (0.15s all cubic-bezier(0.570, 0.065, 0.430, 1.505));
+
+        &.filled{
+          outline: none;
+          opacity: 1;
+        }
+      }
+    }
+  }
+  .move-list {
+    @include clearfix;
+  }
+  .move-list > ul{
+    max-height: em(370);
+    overflow-y: scroll;
+    list-style: none;
+    margin:  em(15);
+    padding: 0;
+
+    > li{
+      border-bottom: 1px solid lighten($lightgray2, 5%);
+      padding: em(3) em(10) em(5);
+    }
+    > li:last-child{
+      border-bottom: none!important;
+    }
+    h4, h5{
+      text-transform: capitalize;
+      font-size: em(14);
+      color: $darkgray;
+      line-height: em(20);
+      margin: 0;
+      padding: em(10) em(10) em(5) 0;
+      font-weight:400;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      cursor: pointer;
+
+      &.current{
+        opacity: 0.3;
+      }
+    }
+    h5{
+      font-size: em(13);
+      padding-top: em(3);
+      padding-bottom: em(12);
+    }
+    .inbox-icon, .collection-icon, .stack-icon{
+      vertical-align: sub;
+      margin-right: em(6);
+    }
+    .inbox-icon{
+      margin-right: em(13);
+      float: left;
+    }
+    .stack-list{
+      list-style:none;
+      padding-left: em(30);
+      padding-top: em(2);
+
+      .stack-icon{
+        float: left;
+        margin-right: em(8);
+      }
+    }
+  }
+.add{
+  p{
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+// File upload modal
+.add-files-modal{
+  form{
+    @include input-underline;
+    input{
+      width: 80%;
+      background-position: 0 -477px;
+      font-style: normal;
+    }
+    ::-webkit-input-placeholder {
+      text-transform: normal;
+      font-style: italic;
+    }
+
+    ::-moz-placeholder {
+      text-transform: normal;
+      font-style: italic;
+    }
+
+    :-ms-input-placeholder {
+      text-transform: normal;
+      font-style: italic;
+    }
+    button{
+      @include button-light;
+    }
+  }
+}
+.add-files-intro{
+  span{
+    font-weight: 600;
+  }
+}
+
+.file-drop{
+  .drop-area{
+    font-size: em(19);
+    text-align: center;
+    padding: em(40);
+    margin: em(20) em(20) em(10);
+    border-radius: 8px;
+    border: 5px lighten($midgray, 20%) dashed;
+    @include transition(border-color 0.15s ease);
+    line-height: 1.6;
+    color: darken($midgray, 3%);
+  }
+  // browse files
+  .file-upload {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    vertical-align: bottom;
+    // margin: 10px;
+    font-weight: 500;
+    @include transition(color 0.15s ease);
+  }
+  .file-upload input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+  .sel-files{
+    margin-top: em(20);
+  }
+  .sel-file {
+    padding: 1px 5px;
+    font-size: smaller;
+    color: grey;
+
+    .thumbnail-containter{
+      border-radius: none;
+      background: transparent;
+      -moz-box-shadow: none;
+      box-shadow:      none;
+      &.note-icon{
+        div{
+          margin-top: em(22);
+          margin-left: em(21);
+        }
+      }
+      img{
+        width: em(96);
+        min-height: em(60);
+        border-radius: 3px;
+        margin-left: em(-18);
+        opacity: 1;
+        @include transition(none);
+      }
+    }
+  }
+
+  .response {
+    padding-top: 30px;
+  }
+
+  .response>ul {
+    list-style-type: decimal;
+  }
+
+  .response li, .response .reqh {
+    color: blue;
+    font-size: smaller;
+    padding-bottom: 5px;
+  }
+
+  .progress {
+    display: inline-block;
+    width: em(320);
+    margin-top: em(15.5);
+    height: em(45);
+    float: left;
+
+    div {
+      font-size: smaller;
+      text-align: right;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: em(45);
+      padding-right: em(15);
+      border-radius: 4px;
+      border: 1px solid;
+      height: em(45);
+      width: 0;
+      @include transition (background-color 0.15s ease);
+    }
+
+    &.done{
+      div{
+        color: rgba(255, 255, 255, 0);
+      }
+    }
+  }
+  .upload-button{
+    float: right;
+    margin-top: em(15);
+    margin-right: em(5);
+  }
+}
+.add-files-modal-content{
+  max-height: em(400);
+  // overflow-y: scroll;
+  overflow-x: hidden;
+}
+// File Modal
+.modal-backdrop.file{
+  background: rgba(255,255,255,0.94);
+}
+.modal-container.file{
+
+  .modal-content{
+    top: 0;
+    bottom: 0;
+    left: em(240);
+    right: em(240);
+  }
+}
+
+// Loading
+// .modal-container{
+  .loading{
+    text-align: center;
+    margin-top: em(15);
+    color: $darkgray;
+    font-style: italic;
+    background: url('../img/interface/loader.gif') top center no-repeat;
+    padding-top: em(40);
+    padding-bottom: em(25);
+
+  }
+// }

@@ -1,0 +1,36 @@
+<div class="modal-title">
+  <h2 ng-if="!$parent._modalItem().kind">Move this {{_modalItem().type}}</h2>
+  <h2 ng-if="$parent._modalItem().kind">Move this {{_modalItem().kind}}</h2>
+  <button ng-click="$parent._modalClose()">×</button>
+</div>
+<div ng-controller="CollectionsController" class="move-content" ng-init="find($parent._modalItem().path)" >
+  <section class="move-list">
+        <ul id="move-collections">
+            <li ng-repeat="collection in collections" class="color-{{collection.color}}" >
+                <h4 ng-class="{'selected': selectedPath === collection.path, 'current': parentPath === collection.path + '/'}" ng-click="selectItem(collection.path, $parent._modalItem().path)">
+                  <a >
+                    <span class="collection-icon">
+                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="19px" height="16px"
+                         viewBox="0 0 19 16" enable-background="new 0 0 19 16" xml:space="preserve">
+                      <g>
+                        <path class="collection-back" fill="#D9DEEA" stroke="#939CB1" d="M10.502,2.545c-0.554,0-1.315-0.32-1.702-0.716l0.099,0.102
+                          C8.126,1.14,6.601,0.498,5.501,0.498H2.497c-1.103,0-1.998,0.897-1.998,2.006v9.988c0,1.108,0.893,2.006,1.992,2.006h11.016
+                          c1.1,0,1.992-0.898,1.992-2.001V4.546c0-1.105-0.887-2.001-2.006-2.001H10.502z"/>
+                        <path class="collection-front"  fill="#FFFFFF" stroke="#939CB0" d="M6.006,4.498c-1.108,0-1.74,0.877-2.006,2l-1.501,6.001c-0.249,1.142,0.897,2,2.006,2
+                          h9.988c1.108,0,1.672-0.894,2.006-2L18,6.498c0.266-1.107-0.897-2-2.006-2H6.006z"/>
+                      </g>
+                      </svg>
+                    </span> {{collection.name}}
+                  </a>
+                </h4>
+            </li>
+            <p ng-hide="!collections || collections.length" id="no-collections">No collections yet</p>
+        </ul>
+  </section>
+  <div class="modal-form">
+    <form>
+      <input type="text" id="move_field" placeholder="select destination" ng-class="{'filled': selectedPath !== undefined}" ng-model="selectedPath"readonly>
+      <button ng-click="moveItem($parent._modalItem())">Move</button>
+    </form>
+  </div>
+</div>

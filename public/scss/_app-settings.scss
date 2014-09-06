@@ -1,0 +1,172 @@
+// wide modal style - used in settings
+.modal-dialog.wide{
+  width: em(550);
+  left: 50.55%;
+  top: 50.55%;
+  -webkit-transform: translateY(-50.5%) translateX(-50.5%);
+  -ms-transform: translateY(-50.5%) translateX(-50.5%);
+  transform: translateY(-50.5%) translateX(-50.5%);
+}
+
+.settings-content{
+  h3{
+    font-weight:600;
+    font-size: em(11);
+    color: $midgray;
+    text-transform: uppercase;
+    margin:0;
+    padding: em(10) 0;
+  }
+  section.settings-account{
+    border-bottom: 1px solid $lightgray2;
+    height: em(190);
+    width: em(549);
+    border-radius: em(4) em(4) 0 0;
+    padding-top: em(15);
+    background: url('../img/interface/account-bg.jpg') center no-repeat;
+
+    .edit-username{
+      font-size: em(18);
+      color: $black;
+      font-weight: 500;
+      margin: 0 auto;
+      text-align: center;
+      display: block;
+
+      span:hover{
+        background-position: 0 -477px;
+      }
+
+      form{
+        margin: 0;
+
+        input{
+          background-position: 0 -477px;
+        }
+
+        button{
+          width: auto;
+          float: none;
+          text-transform: none;
+          &:hover{
+            background: transparent;
+          }
+        }
+      }
+    }
+    .are-you-sure p{
+      text-align: center;
+    }
+
+    > a{
+      margin: em(0.5) auto;
+      padding: 2px;
+      width: em(150);
+      border-radius: 4px;
+      display: block;
+      cursor: pointer;
+      @include transition(all 0.15s ease-in-out);
+      text-align: center;
+      font-size: em(14);
+      color: $midgray;
+      font-style: italic;
+      border: 1px solid lighten($midgray, 25%);
+    }
+
+    .edit-avatar{
+      border-radius: 46px;
+      cursor: pointer;
+      width: em(92);
+      height: em(92);
+      margin: 0 auto em(5);
+      position: relative;
+
+      img, div{
+        position: absolute;
+        top: 0; left: 0;
+        width: 92px;
+        height: 92px;
+        border-radius: 46px;
+      }
+
+      div{
+        // @include transition(opacity 0.15s ease-in-out);
+        background: rgba(0, 0, 0, 0.6);
+        text-align: center;
+        padding-top: em(40);
+        font-size: em(11);
+        font-weight: 500;
+        left: 50%;
+        color: $white;
+      }
+    }
+  }
+  section.settings-octobox, section.settings-dropbox{
+    border-bottom: 1px solid $lightgray2;
+    margin: em(10) em(20);
+    &.settings-dropbox{
+      border-bottom: none;
+    }
+    .icon-dropbox{
+      float: left;
+      margin: em(10) em(20) em(35) em(10);
+    }
+    p{
+      margin-bottom: em(0);
+      color: $darkgray;
+    }
+    button{
+      @include button;
+      float: left;
+      padding: em(10) em(15) em(8);
+      margin-right: em(20);
+    }
+    .revoke-container{
+      @include clearfix;
+    }
+    .are-you-sure p{
+      padding-top: em(6);
+      padding-bottom: 0;
+    }
+    p.small{
+      margin-left: em(57);
+      color: $midgray;
+    }
+  }
+  .modal-form{
+    height: em(53);
+    button{
+      float: right;
+      margin: em(15) em(20);
+      border-radius: 4px;
+      background: #FFFFFF;
+      border: 1px solid $lightgray2;
+      font-weight: 600;
+      padding: em(7) em(12) em(6);
+      font-size: em(12);
+      color: #BEC3D4;
+      text-transform: uppercase;
+      @include transition(all 0.15s ease-in-out);
+
+      &:hover{
+        color: darken(#BEC3D4, 15%);
+      }
+      &:active{
+        margin-top: em(17);
+        padding-bottom: em(4);
+      }
+    }
+  }
+}
+
+.are-you-sure p{
+  margin: 0;
+  padding: 0;
+}
+.are-you-sure a:first-child{
+  font-weight: 600;
+}
+.are-you-sure a:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}

@@ -1,0 +1,26 @@
+/*
+ *
+ * Stylesheet: 1023 & Up
+ *
+ */
+
+
+ // List view grid - 3 columns
+ .deckgrid[deckgrid]::before {
+     content: '3 .column.column-1-3';
+     font-size: 0;
+     visibility: hidden;
+ }
+
+ .deckgrid .column-1-3 {
+     width: 33%;
+ }
+
+ .filemodal-content{
+   left: em(100);
+   right: em(100);
+ }
+ .file-content.zoom.full-view{
+   left: em(-100);
+   right: em(-100);
+ }

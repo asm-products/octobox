@@ -1,0 +1,35 @@
+{
+  "version": 3,
+  "features": [
+    {
+      "description": "Force SSL encryption by default",
+      "status": 100,
+      "kind": "bug",
+      "changed": false
+    },
+    {
+      "description": "Back arrow moved to the logo",
+      "status": 100,
+      "kind": "interface",
+      "changed": false
+    },
+    {
+      "description": "Drag'n'drop upload",
+      "status": 35,
+      "kind": "interface",
+      "changed": false
+    },
+    {
+      "description": "<b>Octobot</b> - Browser extension that lets you save links, images and screenshots of websites. <i>Late September</i>",
+      "status": 15,
+      "kind": "extension",
+      "changed": false
+    },
+    {
+      "description": "Interface improvements – full drag'n'drop, multi-item editing, paging. <i>Early October</i>",
+      "status": 5,
+      "kind": "interface",
+      "changed": true
+    }
+  ]
+}

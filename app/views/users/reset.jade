@@ -1,0 +1,11 @@
+extends auth
+
+block auth
+  form(method='post')
+    legend
+      | Create a new password for your account below. Password has to be at least 8 characters long
+
+    input#password(type='password', name="password", placeholder='Password', autofocus)
+    input#password(type='password', name="passwordConfirmation", placeholder='Confirm Password')
+
+    button(type='submit') Update Password
