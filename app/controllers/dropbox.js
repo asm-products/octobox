@@ -4,15 +4,15 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-		crypto = require('crypto'),
-		request = require('request'),
+	crypto = require('crypto'),
+	request = require('request'),
     url = require('url'),
-		Collection = mongoose.model('Collection'),
-		Inbox = mongoose.model('Inbox'),
-		Stack = mongoose.model('Stack'),
-		Tag = mongoose.model('Tag'),
-		_ = require('lodash'),
-		config = require('../../config/config');
+	Collection = mongoose.model('Collection'),
+	Inbox = mongoose.model('Inbox'),
+	Stack = mongoose.model('Stack'),
+	Tag = mongoose.model('Tag'),
+	_ = require('lodash'),
+	config = require('../../config/config');
 
 
 function generateCSRFToken() {
@@ -20,11 +20,20 @@ function generateCSRFToken() {
         .replace(/\//g, '-').replace(/\+/g, '_');
 }
 function generateRedirectURI() {
-    return url.format({
-            protocol: 'https',
-            host: config.httpsCallback,
-            pathname: '/callback'
-    });
+	// Use https callback for production
+	if (process.env.NODE_ENV === 'production'){
+	    return url.format({
+	            protocol: 'https',
+	            host: config.httpsCallback,
+	            pathname: '/callback'
+	    });
+	} else {
+		return url.format({
+				protocol: 'http',
+				host: config.clientCallback,
+				pathname: '/callback'
+		});
+	}
 }
 function generateClientURI() {
 		return url.format({
@@ -92,21 +101,21 @@ exports.callback = function (req, res) {
             request.get('https://api.dropbox.com/1/account/info', {
                 headers: { Authorization: 'Bearer ' + token }
             }, function (error, response, body) {
-								var user = req.user;
-								user.dropbox = _.extend(user.dropbox, {
-											token	: token,
-											uid		: JSON.parse(body).uid,
-											email	: JSON.parse(body).email
-										});
+				var user = req.user;
+				user.dropbox = _.extend(user.dropbox, {
+							token	: token,
+							uid		: JSON.parse(body).uid,
+							email	: JSON.parse(body).email
+						});
 
-								user.save(function(err) {
-									if (err) {
-										return res.status(400).jsonp({	errors: err });
-									} else {
-										var clientUrl = generateClientURI(req);
-										res.redirect(clientUrl + '?token=' + token + '&uid=' + JSON.parse(body).uid + '&email=' + JSON.parse(body).email);
-									}
-								});
+				user.save(function(err) {
+					if (err) {
+						return res.status(400).jsonp({	errors: err });
+					} else {
+						var clientUrl = generateClientURI(req);
+						res.redirect(clientUrl + '?token=' + token + '&uid=' + JSON.parse(body).uid + '&email=' + JSON.parse(body).email);
+					}
+				});
             });
 
         });
