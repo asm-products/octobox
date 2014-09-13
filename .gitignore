@@ -22,4 +22,6 @@ node_modules/
 public/lib
 test/coverage/
 
+dump.rdb
+
 secure
