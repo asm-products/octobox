@@ -799,6 +799,21 @@ exports.create = function(req, res, next) {
 };
 
 /**
+ * Remove a user
+ */
+exports.remove = function(req, res){
+  var user = User.findOne(req.body.email);
+
+  user.remove(function(err){
+    if (err) return res.status(400).jsonp({	errors: err });
+    res.jsonp({
+      message: 'user successfully removed',
+      kind: 'success'
+    });
+  });
+};
+
+/**
  * Update a user
  */
 exports.update = function(req, res) {

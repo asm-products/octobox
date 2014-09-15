@@ -15,5 +15,5 @@ module.exports = function(app) {
 
 	app.get('/reset/:token', users.resetToken);
 	app.post('/reset/:token', users.resetSubmit);
-	
+
 };

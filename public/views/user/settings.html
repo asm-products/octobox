@@ -16,6 +16,11 @@
     </a>
     <div are-you-sure ng-show="showReset" action="resetPassword()" hide="toggleResetPassword()" action-name="Reset" class="are-you-sure slide-left">
     </div>
+    <a ng-show="!showRemove" ng-click="toggleRemoveAccount()" >
+      Remove Account
+    </a>
+    <div are-you-sure ng-show="showRemove" action="removeAccount()" hide="toggleRemoveAccount()" action-name="Remove" class="are-you-sure slide-left">
+    </div>
   </section>
   <section class="settings-dropbox">
     <div class="icon-dropbox">

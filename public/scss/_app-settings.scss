@@ -19,7 +19,7 @@
   }
   section.settings-account{
     border-bottom: 1px solid $lightgray2;
-    height: em(190);
+    height: em(205);
     width: em(549);
     border-radius: em(4) em(4) 0 0;
     padding-top: em(15);
@@ -60,6 +60,7 @@
 
     > a{
       margin: em(0.5) auto;
+      margin-bottom: 2px;
       padding: 2px;
       width: em(150);
       border-radius: 4px;

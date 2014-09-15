@@ -17,6 +17,9 @@ angular.module('octobox.user').factory('User', ['$resource', function($resource)
         reset: {
           method: 'POST',
           url: 'forgot'
+        },
+        remove: {
+          method: 'DELETE'
         }
     });
 }]);
