@@ -613,7 +613,7 @@ h1 {
   width: 2.5em;
   height: 2.5em;
   mask: url("../img/logo-mask.svg#logo_mask");
-  -webkit-mask: url("../img/logo-mask.svg") top left/cover;
+  -webkit-mask: url(../img/logo-mask.svg) top left/cover;
   -o-mask: url(../img/logo-mask.svg) top left/cover;
   -ms-mask: url(../img/logo-mask.svg) top left/cover;
   background-image: linear-gradient(rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 30%, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0.2) 100%);
@@ -632,7 +632,7 @@ h1 {
     cursor: pointer; }
   .app-logo.back {
     mask: url("../img/logo-back-mask.svg#logo_mask");
-    -webkit-mask: url("../img/logo-back-mask.svg") top left/cover;
+    -webkit-mask: url(../img/logo-back-mask.svg) top left/cover;
     -o-mask: url(../img/logo-back-mask.svg) top left/cover;
     -ms-mask: url(../img/logo-back-mask.svg) top left/cover; }
 
@@ -1397,18 +1397,18 @@ body:before {
       font-weight: 500;
       left: 50%;
       color: #fff; }
-.settings-content section.settings-octobox, .settings-content section.settings-dropbox {
+.settings-content section.settings-octobox, .settings-content section.settings-dropbox, .settings-content section.settings-remove-account {
   border-bottom: 1px solid #E4E7EC;
   margin: 0.625em 1.25em; }
-  .settings-content section.settings-octobox.settings-dropbox, .settings-content section.settings-dropbox.settings-dropbox {
+  .settings-content section.settings-octobox.settings-dropbox, .settings-content section.settings-octobox.settings-remove-account, .settings-content section.settings-dropbox.settings-dropbox, .settings-content section.settings-dropbox.settings-remove-account, .settings-content section.settings-remove-account.settings-dropbox, .settings-content section.settings-remove-account.settings-remove-account {
     border-bottom: none; }
-  .settings-content section.settings-octobox .icon-dropbox, .settings-content section.settings-dropbox .icon-dropbox {
+  .settings-content section.settings-octobox .icon-dropbox, .settings-content section.settings-dropbox .icon-dropbox, .settings-content section.settings-remove-account .icon-dropbox {
     float: left;
     margin: 0.625em 1.25em 2.1875em 0.625em; }
-  .settings-content section.settings-octobox p, .settings-content section.settings-dropbox p {
+  .settings-content section.settings-octobox p, .settings-content section.settings-dropbox p, .settings-content section.settings-remove-account p {
     margin-bottom: 0em;
     color: #556471; }
-  .settings-content section.settings-octobox button, .settings-content section.settings-dropbox button {
+  .settings-content section.settings-octobox button, .settings-content section.settings-dropbox button, .settings-content section.settings-remove-account button {
     border-radius: 4px;
     border: 1px solid #1f73cb;
     font-weight: 600;
@@ -1423,23 +1423,35 @@ body:before {
     float: left;
     padding: 0.625em 0.9375em 0.5em;
     margin-right: 1.25em; }
-    .settings-content section.settings-octobox button:hover, .settings-content section.settings-dropbox button:hover {
+    .settings-content section.settings-octobox button:hover, .settings-content section.settings-dropbox button:hover, .settings-content section.settings-remove-account button:hover {
       border-color: #3c8de1;
       background: #68a7e8; }
-    .settings-content section.settings-octobox button:focus, .settings-content section.settings-dropbox button:focus {
+    .settings-content section.settings-octobox button:focus, .settings-content section.settings-dropbox button:focus, .settings-content section.settings-remove-account button:focus {
       outline: 0; }
-    .settings-content section.settings-octobox button:active, .settings-content section.settings-dropbox button:active {
+    .settings-content section.settings-octobox button:active, .settings-content section.settings-dropbox button:active, .settings-content section.settings-remove-account button:active {
       margin-top: 0.125em; }
-  .settings-content section.settings-octobox .revoke-container:after, .settings-content section.settings-dropbox .revoke-container:after {
+  .settings-content section.settings-octobox .revoke-container:after, .settings-content section.settings-dropbox .revoke-container:after, .settings-content section.settings-remove-account .revoke-container:after {
     content: "";
     display: table;
     clear: both; }
-  .settings-content section.settings-octobox .are-you-sure p, .settings-content section.settings-dropbox .are-you-sure p {
+  .settings-content section.settings-octobox .are-you-sure p, .settings-content section.settings-dropbox .are-you-sure p, .settings-content section.settings-remove-account .are-you-sure p {
     padding-top: 0.375em;
     padding-bottom: 0; }
-  .settings-content section.settings-octobox p.small, .settings-content section.settings-dropbox p.small {
+  .settings-content section.settings-octobox p.small, .settings-content section.settings-dropbox p.small, .settings-content section.settings-remove-account p.small {
     margin-left: 3.5625em;
     color: #A2A6B6; }
+  .settings-content section.settings-octobox.settings-remove-account, .settings-content section.settings-dropbox.settings-remove-account, .settings-content section.settings-remove-account.settings-remove-account {
+    border-top: 1px solid #E4E7EC;
+    margin-top: 15px;
+    margin-left: 80px;
+    padding-top: 15px; }
+    .settings-content section.settings-octobox.settings-remove-account button, .settings-content section.settings-dropbox.settings-remove-account button, .settings-content section.settings-remove-account.settings-remove-account button {
+      background-color: transparent;
+      color: #e74c3c;
+      border-color: #e74c3c; }
+    .settings-content section.settings-octobox.settings-remove-account p.small, .settings-content section.settings-dropbox.settings-remove-account p.small, .settings-content section.settings-remove-account.settings-remove-account p.small {
+      margin-left: 0;
+      padding-left: 0; }
 .settings-content .modal-form {
   height: 3.3125em; }
   .settings-content .modal-form button {

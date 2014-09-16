@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
     Inbox = mongoose.model('Inbox'),
     Collection = mongoose.model('Collection'),
     Stack = mongoose.model('Stack'),
+    Tag = mongoose.model('Tag'),
 		User = mongoose.model('User'),
 		_ = require('lodash'),
     crypto = require('crypto'),
@@ -803,14 +804,46 @@ exports.create = function(req, res, next) {
  */
 exports.remove = function(req, res){
   var user = User.findOne(req.body.email);
+  // Remove all collections belonging to user
+  Collection.remove({
+    user: user._id
+  }, function(err) {
+    if (err)
+      return res.status(400).jsonp({	errors: err });
+    //
+    Inbox.remove({
+      user: user._id
+    }, function(err) {
+      if (err)
+        return res.status(400).jsonp({	errors: err });
 
-  user.remove(function(err){
-    if (err) return res.status(400).jsonp({	errors: err });
-    res.jsonp({
-      message: 'user successfully removed',
-      kind: 'success'
+      // Remove all stacks belonging to user
+      Stack.remove({
+        user: user._id
+      }, function(err) {
+        if (err)
+          return res.status(400).jsonp({	errors: err });
+
+        Tag.remove({
+          user: user._id
+        }, function(err) {
+          if (err)
+            return res.status(400).jsonp({	errors: err });
+
+          user.remove(function(err){
+            if (err)
+              return res.status(400).jsonp({	errors: err });
+
+            res.jsonp({
+              message: 'user successfully removed',
+              kind: 'success'
+            });
+          });
+        });
+      });
     });
   });
+
 };
 
 /**
