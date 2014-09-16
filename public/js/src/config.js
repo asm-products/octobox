@@ -144,7 +144,6 @@ angular.module('octobox').config(['$stateProvider', '$urlRouterProvider',
 		}]);
 }]);
 
-
 //Setting HTML5 Location Mode
 // angular.module('octobox').config(['$locationProvider',
 //   function($locationProvider) {

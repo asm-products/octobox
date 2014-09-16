@@ -11000,7 +11000,6 @@ angular.module('octobox').config(['$stateProvider', '$urlRouterProvider',
 		}]);
 }]);
 
-
 //Setting HTML5 Location Mode
 // angular.module('octobox').config(['$locationProvider',
 //   function($locationProvider) {
@@ -12035,10 +12034,29 @@ angular.module('octobox.user').controller('UserController', ['$scope', '$rootSco
 		User.reset({
 			email: $scope.user.email
 		}, function () {
-			AlertsManager.addAlert('Email with a reset link was sent. Check your inbox', 'alert-success', 3000);
+			AlertsManager.addAlert('Email with a reset link was sent. Check your inbox',
+                             'alert-success', 3000);
 			$scope.modal.close();
 		});
 	};
+
+  $scope.toggleRemoveAccount = function(){
+		if ($scope.showRemove === undefined)
+			$scope.showRemove = false;
+		$scope.showRemove = !$scope.showRemove;
+  };
+
+  $scope.removeAccount = function(){
+    $scope.showRemove = !$scope.showRemove;
+		User.remove({
+			email: $scope.user.email
+		}, function () {
+			AlertsManager.addAlert('Your account was successfully removed.' +
+                             'We will miss you :(', 'alert-success', 3000);
+      setTimeout(function() { document.location = '/signout'; }, 3000);
+			$scope.modal.close();
+		});
+  };
 
 	$scope.toggleRevokeConfirm = function () {
 		if ($scope.showRevoke === undefined)
@@ -12230,6 +12248,9 @@ angular.module('octobox.user').factory('User', ['$resource', function($resource)
         reset: {
           method: 'POST',
           url: 'forgot'
+        },
+        remove: {
+          method: 'DELETE'
         }
     });
 }]);

@@ -19,7 +19,7 @@
   }
   section.settings-account{
     border-bottom: 1px solid $lightgray2;
-    height: em(190);
+    height: em(205);
     width: em(549);
     border-radius: em(4) em(4) 0 0;
     padding-top: em(15);
@@ -60,6 +60,7 @@
 
     > a{
       margin: em(0.5) auto;
+      margin-bottom: 2px;
       padding: 2px;
       width: em(150);
       border-radius: 4px;
@@ -101,10 +102,10 @@
       }
     }
   }
-  section.settings-octobox, section.settings-dropbox{
+  section.settings-octobox, section.settings-dropbox, section.settings-remove-account{
     border-bottom: 1px solid $lightgray2;
     margin: em(10) em(20);
-    &.settings-dropbox{
+    &.settings-dropbox, &.settings-remove-account{
       border-bottom: none;
     }
     .icon-dropbox{
@@ -131,6 +132,25 @@
     p.small{
       margin-left: em(57);
       color: $midgray;
+    }
+
+    // Remove account
+    &.settings-remove-account{
+      border-top: 1px solid $lightgray2;
+      margin-top: 15px;
+      margin-left: 80px;
+      padding-top: 15px;
+
+      button{
+        background-color: transparent;
+        color: #e74c3c;
+        border-color: #e74c3c;
+        // margin-left: 5.1em;
+      }
+      p.small{
+        margin-left: 0;
+        padding-left: 0;
+      }
     }
   }
   .modal-form{

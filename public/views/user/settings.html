@@ -33,6 +33,18 @@
       This data cannot be recovered. No files will be removed from Dropbox.
     </p>
   </section>
+  <section class="settings-remove-account">
+    <div class="revoke-container">
+      <button ng-click="toggleRemoveAccount()" >
+        Remove Account
+      </button>
+      <div are-you-sure ng-show="showRemove" action="removeAccount()" hide="toggleRemoveAccount()" action-name="Remove" class="are-you-sure slide-left">
+      </div>
+    </div>
+    <p class="small">
+      Removing your account will permanently & immediately remove your account and all your data from our service. We will not remove any files from your Dropbox account.
+    </p>
+  </section>
   <div class="modal-form">
     <button name="done" ng-click="$parent._modalClose()">Done</button>
   </div>
