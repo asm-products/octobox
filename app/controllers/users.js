@@ -803,46 +803,53 @@ exports.create = function(req, res, next) {
  * Remove a user
  */
 exports.remove = function(req, res){
-  var user = User.findOne(req.body.email);
+  var user = req.user;
   // Remove all collections belonging to user
-  Collection.remove({
-    user: user._id
-  }, function(err) {
-    if (err)
-      return res.status(400).jsonp({	errors: err });
-    //
-    Inbox.remove({
+  if (user._id && user.email){
+    Collection.remove({
       user: user._id
     }, function(err) {
       if (err)
         return res.status(400).jsonp({	errors: err });
-
-      // Remove all stacks belonging to user
-      Stack.remove({
+      //
+      Inbox.remove({
         user: user._id
       }, function(err) {
         if (err)
           return res.status(400).jsonp({	errors: err });
 
-        Tag.remove({
+        // Remove all stacks belonging to user
+        Stack.remove({
           user: user._id
         }, function(err) {
           if (err)
             return res.status(400).jsonp({	errors: err });
 
-          user.remove(function(err){
+          Tag.remove({
+            user: user._id
+          }, function(err) {
             if (err)
               return res.status(400).jsonp({	errors: err });
 
-            res.jsonp({
-              message: 'user successfully removed',
-              kind: 'success'
+            user.remove(function(err){
+              if (err)
+                return res.status(400).jsonp({	errors: err });
+
+              res.jsonp({
+                message: 'user successfully removed',
+                kind: 'success'
+              });
             });
           });
         });
       });
     });
-  });
+  } else {
+    res.jsonp({
+      message: 'user was not found',
+      kind: 'error'
+    });
+  }
 
 };
 
