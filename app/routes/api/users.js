@@ -10,7 +10,7 @@ module.exports = function(app, passport) {
 
 	// Setting up the users api
 	app.post('/api/users', users.create);
-  app.delete('/api/users', users.remove);
+  app.delete('/api/users', authorization.requiresLoginAPI, users.remove);
 	app.put('/api/users/:userId/betastatus', authorization.requiresLoginAPI, users.updateBetaStatus);
 	app.put('/api/users/:userId', authorization.requiresLoginAPI, users.update);
 
