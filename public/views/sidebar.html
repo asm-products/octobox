@@ -58,7 +58,7 @@
         <ul id="sidebar-collections" >
             <li ng-repeat="collection in collections" ng-class="{current: isActive('/collection/{{collection.name}}')}" class="color-{{collection.color}}" >
                 <h4>
-                  <a ng-href="#/collection/{{collection.name}}">
+                  <a ng-href="#/collection{{collection.path}}">
                     <span class="collection-icon">
                       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="19px" height="16px"
                          viewBox="0 0 19 16" enable-background="new 0 0 19 16" xml:space="preserve">
