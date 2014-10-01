@@ -1715,7 +1715,7 @@ var Y=s();typeof define=="function"&&typeof define.amd=="object"&&define.amd?(G.
 
     var rect;
     if (node.nodeType == 3) { // If it is a text node, use a range to retrieve the coordinates.
-      for (;;) {
+      for (var i = 0; i < 4; i++) { // Retry a maximum of 4 times when nonsense rectangles are returned
         while (start && isExtendingChar(prepared.line.text.charAt(mStart + start))) --start;
         while (mStart + end < mEnd && isExtendingChar(prepared.line.text.charAt(mStart + end))) ++end;
         if (ie && ie_version < 9 && start == 0 && end == mEnd - mStart) {
@@ -1734,6 +1734,7 @@ var Y=s();typeof define=="function"&&typeof define.amd=="object"&&define.amd?(G.
         start = start - 1;
         collapse = "right";
       }
+      if (ie && ie_version < 11) rect = maybeUpdateRectForZooming(cm.display.measure, rect);
     } else { // If it is a widget, simply get the box for the whole widget.
       if (start > 0) collapse = bias = "right";
       var rects;
@@ -1749,8 +1750,6 @@ var Y=s();typeof define=="function"&&typeof define.amd=="object"&&define.amd?(G.
       else
         rect = nullRect;
     }
-
-    if (ie && ie_version < 11) rect = maybeUpdateRectForZooming(cm.display.measure, rect);
 
     var rtop = rect.top - prepared.rect.top, rbot = rect.bottom - prepared.rect.top;
     var mid = (rtop + rbot) / 2;
@@ -2159,11 +2158,11 @@ var Y=s();typeof define=="function"&&typeof define.amd=="object"&&define.amd?(G.
       display.wheelStartX = display.wheelStartY = null;
 
     // Propagate the scroll position to the actual DOM scroller
-    if (op.scrollTop != null && display.scroller.scrollTop != op.scrollTop) {
+    if (op.scrollTop != null && (display.scroller.scrollTop != op.scrollTop || op.forceScroll)) {
       var top = Math.max(0, Math.min(display.scroller.scrollHeight - display.scroller.clientHeight, op.scrollTop));
       display.scroller.scrollTop = display.scrollbarV.scrollTop = doc.scrollTop = top;
     }
-    if (op.scrollLeft != null && display.scroller.scrollLeft != op.scrollLeft) {
+    if (op.scrollLeft != null && (display.scroller.scrollLeft != op.scrollLeft || op.forceScroll)) {
       var left = Math.max(0, Math.min(display.scroller.scrollWidth - display.scroller.clientWidth, op.scrollLeft));
       display.scroller.scrollLeft = display.scrollbarH.scrollLeft = doc.scrollLeft = left;
       alignHorizontally(cm);
@@ -2526,16 +2525,16 @@ var Y=s();typeof define=="function"&&typeof define.amd=="object"&&define.amd?(G.
           cm.options.smartIndent && range.head.ch < 100 &&
           (!i || doc.sel.ranges[i - 1].head.line != range.head.line)) {
         var mode = cm.getModeAt(range.head);
+        var end = changeEnd(changeEvent);
         if (mode.electricChars) {
           for (var j = 0; j < mode.electricChars.length; j++)
             if (inserted.indexOf(mode.electricChars.charAt(j)) > -1) {
-              indentLine(cm, range.head.line, "smart");
+              indentLine(cm, end.line, "smart");
               break;
             }
         } else if (mode.electricInput) {
-          var end = changeEnd(changeEvent);
           if (mode.electricInput.test(getLine(doc, end.line).text.slice(0, end.ch)))
-            indentLine(cm, range.head.line, "smart");
+            indentLine(cm, end.line, "smart");
         }
       }
     }
@@ -2597,7 +2596,7 @@ var Y=s();typeof define=="function"&&typeof define.amd=="object"&&define.amd?(G.
         var pos = posFromMouse(cm, e);
         if (!pos || clickInGutter(cm, e) || eventInWidget(cm.display, e)) return;
         e_preventDefault(e);
-        var word = findWordAt(cm, pos);
+        var word = cm.findWordAt(pos);
         extendSelection(cm.doc, word.anchor, word.head);
       }));
     else
@@ -2876,7 +2875,7 @@ var Y=s();typeof define=="function"&&typeof define.amd=="object"&&define.amd?(G.
       start = posFromMouse(cm, e, true, true);
       ourIndex = -1;
     } else if (type == "double") {
-      var word = findWordAt(cm, start);
+      var word = cm.findWordAt(start);
       if (cm.display.shift || doc.extend)
         ourRange = extendRange(doc, ourRange, word.anchor, word.head);
       else
@@ -2930,7 +2929,7 @@ var Y=s();typeof define=="function"&&typeof define.amd=="object"&&define.amd?(G.
         var anchor = oldRange.anchor, head = pos;
         if (type != "single") {
           if (type == "double")
-            var range = findWordAt(cm, pos);
+            var range = cm.findWordAt(pos);
           else
             var range = new Range(Pos(pos.line, 0), clipPos(doc, Pos(pos.line + 1, 0)));
           if (cmp(range.anchor, anchor) > 0) {
@@ -4068,24 +4067,6 @@ var Y=s();typeof define=="function"&&typeof define.amd=="object"&&define.amd?(G.
     return target;
   }
 
-  // Find the word at the given position (as returned by coordsChar).
-  function findWordAt(cm, pos) {
-    var doc = cm.doc, line = getLine(doc, pos.line).text;
-    var start = pos.ch, end = pos.ch;
-    if (line) {
-      var helper = cm.getHelper(pos, "wordChars");
-      if ((pos.xRel < 0 || end == line.length) && start) --start; else ++end;
-      var startChar = line.charAt(start);
-      var check = isWordChar(startChar, helper)
-        ? function(ch) { return isWordChar(ch, helper); }
-        : /\s/.test(startChar) ? function(ch) {return /\s/.test(ch);}
-        : function(ch) {return !/\s/.test(ch) && !isWordChar(ch);};
-      while (start > 0 && check(line.charAt(start - 1))) --start;
-      while (end < line.length && check(line.charAt(end))) ++end;
-    }
-    return new Range(Pos(pos.line, start), Pos(pos.line, end));
-  }
-
   // EDITOR METHODS
 
   // The publicly visible API. Note that methodOp(f) means
@@ -4427,6 +4408,24 @@ var Y=s();typeof define=="function"&&typeof define.amd=="object"&&define.amd?(G.
         doc.sel.ranges[i].goalColumn = goals[i];
     }),
 
+    // Find the word at the given position (as returned by coordsChar).
+    findWordAt: function(pos) {
+      var doc = this.doc, line = getLine(doc, pos.line).text;
+      var start = pos.ch, end = pos.ch;
+      if (line) {
+        var helper = this.getHelper(pos, "wordChars");
+        if ((pos.xRel < 0 || end == line.length) && start) --start; else ++end;
+        var startChar = line.charAt(start);
+        var check = isWordChar(startChar, helper)
+          ? function(ch) { return isWordChar(ch, helper); }
+          : /\s/.test(startChar) ? function(ch) {return /\s/.test(ch);}
+          : function(ch) {return !/\s/.test(ch) && !isWordChar(ch);};
+        while (start > 0 && check(line.charAt(start - 1))) --start;
+        while (end < line.length && check(line.charAt(end))) ++end;
+      }
+      return new Range(Pos(pos.line, start), Pos(pos.line, end));
+    },
+
     toggleOverwrite: function(value) {
       if (value != null && value == this.state.overwrite) return;
       if (this.state.overwrite = !this.state.overwrite)
@@ -4513,6 +4512,7 @@ var Y=s();typeof define=="function"&&typeof define.amd=="object"&&define.amd?(G.
       clearCaches(this);
       resetInput(this);
       this.scrollTo(doc.scrollLeft, doc.scrollTop);
+      this.curOp.forceScroll = true;
       signalLater(this, "swapDoc", this, old);
       return old;
     }),
@@ -7364,7 +7364,7 @@ var Y=s();typeof define=="function"&&typeof define.amd=="object"&&define.amd?(G.
     return function(){return f.apply(null, args);};
   }
 
-  var nonASCIISingleCaseWordChar = /[\u00df\u3040-\u309f\u30a0-\u30ff\u3400-\u4db5\u4e00-\u9fcc\uac00-\ud7af]/;
+  var nonASCIISingleCaseWordChar = /[\u00df\u0590-\u05f4\u0600-\u06ff\u3040-\u309f\u30a0-\u30ff\u3400-\u4db5\u4e00-\u9fcc\uac00-\ud7af]/;
   var isWordCharBasic = CodeMirror.isWordChar = function(ch) {
     return /\w/.test(ch) || ch > "\x80" &&
       (ch.toUpperCase() != ch.toLowerCase() || nonASCIISingleCaseWordChar.test(ch));
@@ -7531,7 +7531,7 @@ var Y=s();typeof define=="function"&&typeof define.amd=="object"&&define.amd?(G.
     if (badBidiRects != null) return badBidiRects;
     var txt = removeChildrenAndAdd(measure, document.createTextNode("A\u062eA"));
     var r0 = range(txt, 0, 1).getBoundingClientRect();
-    if (r0.left == r0.right) return false;
+    if (!r0 || r0.left == r0.right) return false; // Safari returns null in some cases (#2780)
     var r1 = range(txt, 1, 2).getBoundingClientRect();
     return badBidiRects = (r1.right - r0.right < 3);
   }
@@ -7894,7 +7894,7 @@ var Y=s();typeof define=="function"&&typeof define.amd=="object"&&define.amd?(G.
 
   // THE END
 
-  CodeMirror.version = "4.5.0";
+  CodeMirror.version = "4.6.0";
 
   return CodeMirror;
 });
@@ -8564,15 +8564,12 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
 
     var ch = stream.next();
 
-    if (state.escape) {
-      state.escape = false;
-      return getType(state);
-    }
-
     if (ch === '\\') {
-      if (modeCfg.highlightFormatting) state.formatting = "escape";
-      state.escape = true;
-      return getType(state);
+      stream.next();
+      if (modeCfg.highlightFormatting) {
+        var type = getType(state);
+        return type ? type + " formatting-escape" : "formatting-escape";
+      }
     }
 
     // Matches link titles present on next line
@@ -8854,7 +8851,6 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
         inline: inlineNormal,
         text: handleText,
 
-        escape: false,
         formatting: false,
         linkText: false,
         linkHref: false,
@@ -8887,7 +8883,6 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
 
         inline: s.inline,
         text: s.text,
-        escape: false,
         formatting: false,
         linkTitle: s.linkTitle,
         em: s.em,
@@ -8921,9 +8916,6 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
           state.prevLineHasContent = state.thisLineHasContent;
           state.thisLineHasContent = true;
         }
-
-        // Reset state.escape
-        state.escape = false;
 
         // Reset state.taskList
         state.taskList = false;
@@ -9309,7 +9301,7 @@ function(a){var c={addOption:C,removeOption:C};return{restrict:"E",priority:100,
 terminal:!0});O.angular.bootstrap?console.log("WARNING: Tried to load angular more than once."):((Ga=O.jQuery)?(y=Ga,D(Ga.fn,{scope:Ja.scope,isolateScope:Ja.isolateScope,controller:Ja.controller,injector:Ja.injector,inheritedData:Ja.inheritedData}),Ab("remove",!0,!0,!1),Ab("empty",!1,!1,!1),Ab("html",!1,!1,!0)):y=N,Ea.element=y,Zc(Ea),y(U).ready(function(){Wc(U,$b)}))})(window,document);!angular.$$csp()&&angular.element(document).find("head").prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}</style>');
 //# sourceMappingURL=angular.min.js.map
 ;/*
- AngularJS v1.2.23
+ AngularJS v1.2.25
  (c) 2010-2014 Google, Inc. http://angularjs.org
  License: MIT
 */
