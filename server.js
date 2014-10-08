@@ -34,7 +34,8 @@ if (process.env.NODE_ENV === 'production'){
 			cert: fs.readFileSync('./secure/app_useoctobox_com.crt')
 	};
 }
-cluster(function () {
+
+function server() {
 	// Bootstrap db connection
 	var db = mongoose.connect(config.db);
 
@@ -104,4 +105,13 @@ cluster(function () {
 
 	// Expose app
 	exports = module.exports = app;
-});
+}
+
+if (process.env.NODE_ENV === 'test') {
+	server();
+}
+else {
+	cluster(function () {
+		server();
+	});
+}
