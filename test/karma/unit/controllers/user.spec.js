@@ -32,7 +32,7 @@
 			// The injector ignores leading and trailing underscores here
 			// (i.e. _$httpBackend_). This allows us to inject a service but then
 			// attach it to a variable with the same name as the service.
-			beforeEach(inject(function($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_) {
+			beforeEach(inject(function($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_, $templateCache) {
 
 				scope = $rootScope.$new();
 
@@ -45,14 +45,15 @@
 				$httpBackend = _$httpBackend_;
 
 				$location = _$location_;
-
+				// set the template cache should use a preprocessor when adding more tests
+				$templateCache.put('views/index.html', 'views/user/account.html');
 			}));
 
 
 			it('$scope.findOne() should create an user array that does not equal null', function() {
 					// fixture URL parament
 					$stateParams.userId = '525a8422f6d0f87f0e407a33';
-										
+					
 					// fixture response object
 					var testUserData = function() {
 						return {
@@ -76,6 +77,7 @@
 
 			it('$scope.update() should update a valid users \n', inject(function(User) {
 
+				var newName = 'User Test';
 				// fixture rideshare
 				var putUserData = function() {
 					return {
@@ -104,12 +106,12 @@
 				*/
 
 				// run controller
-				scope.update();
+				scope.update(newName, function() {});
 				$httpBackend.flush();
 
 				// test URL location to new object
-				expect($location.path()).toBe('/api/users/' + putUserData()._id);
-
+				expect($location.path()).toBe('/');
+				expect(scope.user.name).toBe(newName);
 			}));
 
 		});

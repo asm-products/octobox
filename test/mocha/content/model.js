@@ -3,9 +3,7 @@
 /**
  * Module dependencies.
  */
-var request = require('supertest'),
-		app = require('../../../server'),
-		should = require('should'),
+var should = require('should'),
 		// assert = require('assert'),
 		mongoose = require('mongoose'),
 		User = mongoose.model('User'),
@@ -17,7 +15,7 @@ var request = require('supertest'),
 
 
 // Globals
-var user, cookie;
+var user;
 // var req;
 var result = {};
 var response = {};
@@ -279,14 +277,7 @@ describe('<Unit Test>', function() {
 				stacks: [],
 				remove: []
 			};
-
-			request(app)
-			.post('/api/users/session')
-			.send({ email: 'test@octoboxapp.com', password:'password' })
-			.end(function(err,res){
-				cookie = res.headers['set-cookie'];
-				done();
-			});
+      done();
 		});
 
 		describe('Method Sync', function () {

@@ -15,15 +15,36 @@ module.exports = function(config) {
 
 		// list of files / patterns to load in the browser
 		files: [
+			'public/lib/lodash/dist/lodash.js',
+			'public/lib/zeroclipboard/ZeroClipboard.js',
+			'public/lib/moment/moment.js',
+			'public/lib/danialfarid-angular-file-upload/dist/angular-file-upload-shim.js',
+			'public/lib/codemirror/lib/codemirror.js',
+			'public/lib/codemirror/addon/mode/loadmode.js',
+			'public/lib/codemirror/addon/mode/overlay.js',
+			'public/lib/codemirror/addon/edit/closebrackets.js',
+			'public/lib/codemirror/mode/markdown/markdown.js',
+			'public/lib/codemirror/mode/gfm/gfm.js', // markdown for codemirror
+			'public/lib/mousetrap/mousetrap.js', // keyboard shortcut library
 			'public/lib/angular/angular.js',
 			'public/lib/angular-mocks/angular-mocks.js',
+			'public/lib/angular-animate/angular-animate.js',
 			'public/lib/angular-cookies/angular-cookies.js',
 			'public/lib/angular-resource/angular-resource.js',
 			'public/lib/angular-ui-router/release/angular-ui-router.js',
+			'public/lib/angular-dropdowns/dist/angular-dropdowns.js',
+			'public/lib/mgo-mousetrap/wMousetrap.js', // mousetrap directive
+			'public/lib/ng-clip/src/ngClip.js',
+			'public/lib/angular-moment/angular-moment.js',
+			'public/lib/angular-deckgrid/angular-deckgrid.js',
+			'public/lib/angular-ui-codemirror/ui-codemirror.js',
+			'public/lib/angular-bindonce/bindonce.js',
+			'public/lib/danialfarid-angular-file-upload/dist/angular-file-upload.js',
+			'public/lib/ngDropbox/dropbox.js',
 			'public/js/src/app.js',
 			'public/js/src/config.js',
-			'public/js/src/directives.js',
-			'public/js/src/filters.js',
+			'public/js/src/directives/*.js',
+			'public/js/src/filters/*.js',
 			'public/js/src/services/*.js',
 			'public/js/src/services/**/*.js',
 			'public/js/src/controllers/*.js',
