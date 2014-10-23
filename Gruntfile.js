@@ -86,13 +86,13 @@ module.exports = function(grunt) {
 				dest: 'public/js/octobox.js'
 			}
 		},
-		// uglify: {
-		// 	js: {
-		// 		files: {
-		// 			'public/js/octobox.min.js' : ['public/js/octobox.js']
-		// 		}
-		// 	}
-		// },
+		uglify: {
+			js: {
+				files: {
+					'public/js/octobox.min.js' : ['public/js/octobox.js']
+				}
+			}
+		},
 		sass: {
 			dist: {
 				files: {
@@ -160,7 +160,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-concat');
-	// grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-cssjoin');
@@ -174,6 +174,6 @@ module.exports = function(grunt) {
 	grunt.option('force', true);
 
 	//Default task(s).
-	grunt.registerTask('default', ['jshint', 'concurrent', 'concat:js']); // , 'uglify:js'
+	grunt.registerTask('default', ['jshint', 'concurrent', 'concat:js', 'uglify:js']);
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
 };
