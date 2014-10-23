@@ -21,6 +21,7 @@
     "mgo-mousetrap": "https://github.com/mgonto/mgo-mousetrap.git",
     "ngAnimate": "*",
     "angular-ui-codemirror": "bower",
+    "codemirror": "https://github.com/codemirror/CodeMirror.git#master",
     "angular-bindonce": "~0.3.1",
     "danialfarid-angular-file-upload": "~1.4.0"
   },

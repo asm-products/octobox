@@ -51,6 +51,9 @@
   box-sizing: content-box;
 }
 
+.CodeMirror-guttermarker { color: black; }
+.CodeMirror-guttermarker-subtle { color: #999; }
+
 /* CURSOR */
 
 .CodeMirror div.CodeMirror-cursor {
@@ -72,7 +75,7 @@
 /* Can style cursor different in overwrite (non-insert) mode */
 .CodeMirror div.CodeMirror-cursor.CodeMirror-overwrite {}
 
-.cm-tab { display: inline-block; }
+.cm-tab { display: inline-block; text-decoration: inherit; }
 
 .CodeMirror-ruler {
   border-left: 1px solid #ccc;
@@ -118,6 +121,7 @@
 .cm-header, .cm-strong {font-weight: bold;}
 .cm-em {font-style: italic;}
 .cm-link {text-decoration: underline;}
+.cm-strikethrough {text-decoration: line-through;}
 
 .cm-s-default .cm-error {color: #f00;}
 .cm-invalidchar {color: #f00;}
@@ -285,3 +289,6 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
     visibility: hidden;
   }
 }
+
+/* Help users use markselection to safely style text background */
+span.CodeMirror-selectedtext { background: none; }
