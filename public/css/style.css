@@ -6,7 +6,7 @@
  * Stylesheet: Main Stylesheet
  */
 /* import normalize.css */
-/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 
 /**
  * 1. Set default font family to sans-serif.
@@ -33,8 +33,7 @@ body {
 
 /**
  * Correct `block` display not defined for any HTML5 element in IE 8/9.
- * Correct `block` display not defined for `details` or `summary` in IE 10/11
- * and Firefox.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox.
  * Correct `block` display not defined for `main` in IE 11.
  */
 
@@ -47,7 +46,6 @@ footer,
 header,
 hgroup,
 main,
-menu,
 nav,
 section,
 summary {
@@ -95,7 +93,7 @@ template {
  */
 
 a {
-  background-color: transparent;
+  background: transparent;
 }
 
 /**
@@ -436,19 +434,10 @@ th {
 
 /* import bourbon */
 /* import neat */
-/* Neat 1.7.0
- * http://neat.bourbon.io
- * Copyright 2012-2014 thoughtbot, inc.
- * MIT License */
-html {
+* {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
-
-*, *:before, *:after {
-  -webkit-box-sizing: inherit;
-  -moz-box-sizing: inherit;
-  box-sizing: inherit; }
 
 /* import settings */
 /*

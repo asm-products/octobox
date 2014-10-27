@@ -1,27 +1,33 @@
 {
-  "version": 4,
+  "version": 5,
   "features": [
     {
-      "description": "Added ability to remove account.",
+      "description": "Added ~~strikethrough~~ to notes.",
       "status": 100,
       "kind": "interface",
       "changed": true
     },
     {
+      "description": "Note autosave",
+      "status": 25,
+      "kind": "interface",
+      "changed": true
+    },
+    {
       "description": "Drag'n'drop upload",
-      "status": 35,
+      "status": 55,
       "kind": "interface",
       "changed": false
     },
     {
-      "description": "<b>Octobot</b> - Browser extension that lets you save links, images and screenshots of websites. <i>Late September</i>",
-      "status": 15,
+      "description": "<b>Octobot</b> - Browser extension that lets you save links, images and screenshots of websites. ",
+      "status": 25,
       "kind": "extension",
-      "changed": false
+      "changed": true
     },
     {
-      "description": "Interface improvements – full drag'n'drop, multi-item editing, paging. <i>Early October</i>",
-      "status": 5,
+      "description": "Interface improvements – full drag'n'drop, multi-item editing, paging.",
+      "status": 15,
       "kind": "interface",
       "changed": false
     }
